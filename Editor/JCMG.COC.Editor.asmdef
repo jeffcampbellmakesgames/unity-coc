@@ -1,0 +1,10 @@
+{
+    "name": "JCMG.COC.Editor",
+    "references": [],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "Editor"
+    ],
+    "allowUnsafeCode": false
+}
