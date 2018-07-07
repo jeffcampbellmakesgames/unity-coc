@@ -21,15 +21,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System;
+using JCMG.COC.Editor.Utility;
 using UnityEditor;
 
 // ReSharper disable InconsistentNaming
 
-namespace JCMG.COC
+namespace JCMG.COC.Editor
 {
-    [InitializeOnLoad]
-    public class COCInitializer
+	[InitializeOnLoad]
+    public static class COCInitializer
     {
 	    private const string GAME_ASSET_ROOT = ASSET_ROOT + "/" + GAME_ASSET_FOLDERNAME;
 	    private const string ASSET_ROOT = "Assets";
@@ -48,7 +50,9 @@ namespace JCMG.COC
 
                 AssetDatabase.CreateFolder("Assets/Game", Enum.GetName(typeof(COCDomain), cocDomain));
             }
-        }
+
+	        PlayerSettingsUtility.AddScriptingSymbolIfNotDefined("JCMG_COC");
+		}
 
         public static void AddConvention(COCDomain domain, string area)
         {
