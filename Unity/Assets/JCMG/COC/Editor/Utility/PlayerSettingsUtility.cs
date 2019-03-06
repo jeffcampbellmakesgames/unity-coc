@@ -1,7 +1,7 @@
 ﻿/*
 MIT License
 
-Copyright (c) 2018 Jeff Campbell
+Copyright (c) 2019 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-using System.Linq;
-using System.Text;
 using UnityEditor;
 
 namespace JCMG.COC.Editor.Utility
@@ -37,32 +35,28 @@ namespace JCMG.COC.Editor.Utility
 			var scriptingSymbols = scriptingSymbolStr.Split(';');
 
 			foreach (var scriptingSymbol in scriptingSymbols)
-			{
 				if (symbol == scriptingSymbol)
 					return true;
-			}
 
 			return false;
 		}
 
 		public static void AddScriptingSymbolIfNotDefined(string symbol)
 		{
-			if (IsScriptingSymbolDefined(symbol))
-				return;
+			if (IsScriptingSymbolDefined(symbol)) return;
 
 			var currentBuildGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
 			var scriptingSymbolStr = PlayerSettings.GetScriptingDefineSymbolsForGroup(currentBuildGroup);
-			var scriptingSymbols = scriptingSymbolStr.Split(';').ToList();
-			scriptingSymbols.Add(symbol);
 
-			var stringBuilder = new StringBuilder();
-			foreach (var scriptingSymbol in scriptingSymbols)
-			{
-				stringBuilder.Append(scriptingSymbol);
-				stringBuilder.Append(";");
-			}
+			// Add the new symbol to the list of symbols, always ensuring there is a semi-colon separating all symbols
+			if (string.IsNullOrEmpty(scriptingSymbolStr))
+				scriptingSymbolStr = string.Format("{0}", symbol);
+			else if (scriptingSymbolStr[scriptingSymbolStr.Length - 1] == ';')
+				scriptingSymbolStr += string.Format("{0}", symbol);
+			else
+				scriptingSymbolStr += string.Format(";{0}", symbol);
 
-			PlayerSettings.SetScriptingDefineSymbolsForGroup(currentBuildGroup, stringBuilder.ToString());
+			PlayerSettings.SetScriptingDefineSymbolsForGroup(currentBuildGroup, scriptingSymbolStr);
 		}
 	}
 }
