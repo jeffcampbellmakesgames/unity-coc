@@ -1,14 +1,12 @@
 {
     "name": "JCMG.COC.Editor",
     "references": [],
-    "optionalUnityReferences": [],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": []
+    "allowUnsafeCode": false
 }
