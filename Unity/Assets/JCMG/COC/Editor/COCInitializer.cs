@@ -1,7 +1,5 @@
 ﻿/*
-MIT License
-
-Copyright (c) 2019 Jeff Campbell
+Copyright (c) 2020 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,9 +19,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System;
 using System.IO;
-using JCMG.COC.Editor.Utility;
 using UnityEditor;
 using UnityEngine;
 
@@ -31,23 +29,23 @@ using UnityEngine;
 
 namespace JCMG.COC.Editor
 {
-	[InitializeOnLoad]
 	public static class COCInitializer
 	{
 		// ScriptingSymbol
 		private const string SCRIPTING_SYMBOL = "JCMG_COC";
 
-		static COCInitializer()
-		{
-			EnsureSetup();
-		}
-
 		/// <summary>
 		///     EnsureSetup will rerun the AddConvention initialization process to create the necessary folder
 		///     desired by the project, tools, and frameworks reliant on it.
 		/// </summary>
+		[InitializeOnLoadMethod]
 		public static void EnsureSetup()
 		{
+			if (EditorApplication.isPlayingOrWillChangePlaymode)
+			{
+				return;
+			}
+
 			// Initialize any root domain folders and paths
 			if (!Directory.Exists(Path.Combine(COCUtility.GetUnityAssetRoot(), COCUtility.GAME_ASSET_ROOT)))
 				COCUtility.CreateGameRoot();

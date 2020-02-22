@@ -1,8 +1,12 @@
 {
   "dependencies": {
     "com.jeffcampbellmakesgames.packagetools": "https://github.com/jeffcampbellmakesgames/unity-package-tools.git#release/stable",
-    "com.unity.package-manager-ui": "2.0.7",
+    "com.unity.ide.rider": "1.1.4",
+    "com.unity.ide.vscode": "1.1.4",
+    "com.unity.test-framework": "1.1.9",
+    "com.unity.ugui": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
+    "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.assetbundle": "1.0.0",
     "com.unity.modules.audio": "1.0.0",
@@ -35,8 +39,8 @@
   },
   "lock": {
     "com.jeffcampbellmakesgames.packagetools": {
-      "hash": "2c2578f315df7c37dfd9158389f2b40424b63873",
-      "revision": "release/stable"
+      "revision": "release/stable",
+      "hash": "2c2578f315df7c37dfd9158389f2b40424b63873"
     }
   }
 }

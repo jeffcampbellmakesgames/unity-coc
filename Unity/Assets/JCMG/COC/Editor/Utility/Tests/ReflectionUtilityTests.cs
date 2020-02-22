@@ -1,7 +1,5 @@
 ﻿/*
-MIT License
-
-Copyright (c) 2019 Jeff Campbell
+Copyright (c) 2020 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,10 +19,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using NUnit.Framework;
-using System.Collections.Generic;
 
-namespace JCMG.COC.Editor.Utility.Tests
+using System.Collections.Generic;
+using NUnit.Framework;
+
+namespace JCMG.COC.Editor.Tests
 {
 	[TestFixture]
 	public class ReflectionUtilityTests

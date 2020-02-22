@@ -1,7 +1,5 @@
 /*
-MIT License
-
-Copyright (c) 2019 Jeff Campbell
+Copyright (c) 2020 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,12 +19,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System.IO;
 using UnityEngine;
 
 // ReSharper disable InconsistentNaming
 
-namespace JCMG.COC.Editor.Utility
+namespace JCMG.COC.Editor
 {
 	public static class COCUtility
 	{
@@ -39,6 +38,15 @@ namespace JCMG.COC.Editor.Utility
 
 		private const string GIT_KEEP_FILE_CONTENT =
 			"This hidden file is created to preserve potentially empty folders in git commits.";
+
+		/// <summary>
+		/// Returns a full path to the the project folder.
+		/// </summary>
+		/// <returns></returns>
+		public static string GetFullPathToProject()
+		{
+			return Path.GetFullPath(Application.dataPath.Remove(Application.dataPath.Length - ASSET_ROOT.Length));
+		}
 
 		/// <summary>
 		///     Returns a path starting from the Unity Assets folder and descending down an array
