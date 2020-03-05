@@ -11,17 +11,25 @@ namespace JCMG.COC.Editor
 		/// </summary>
 		internal override void Update()
 		{
-			var childFolderArrays = GetInputValues(nameof(_childFolders), new object[]{_childFolders});
-			var length = childFolderArrays.Sum(x => ((string[])x).Length);
-			_outputFolders = new string[length];
+			var childFolderArrays = GetInputValues(nameof(_childFolders), new object[]{_childFolders})
+				.OfType<FolderRef[]>()
+				.ToArray();
+
+			var length = childFolderArrays.Sum(x => x.Length);
+			_outputFolders = new FolderRef[length];
 
 			var current = 0;
 			for (var i = 0; i < childFolderArrays.Length; i++)
 			{
-				var childFolderArray = (string[])childFolderArrays[i];
+				var childFolderArray = childFolderArrays[i];
 				for (var j = 0; j < childFolderArray.Length; j++)
 				{
-					_outputFolders[current++] = Path.Combine("Assets", childFolderArray[j]);
+					var childFolderRef = childFolderArray[j];
+					var newFolderRef = new FolderRef
+					{
+						FolderName = Path.Combine(COCUtility.ASSET_ROOT, childFolderRef.FolderName)
+					};
+					_outputFolders[current++] = newFolderRef;
 				}
 			}
 

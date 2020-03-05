@@ -6,13 +6,17 @@ namespace JCMG.COC.Editor
 {
 	internal abstract class FolderNodeBase : HierarchyNodeBase
 	{
+		#pragma warning disable 0649
+
 		[Input(typeConstraint = TypeConstraint.Strict)]
 		[SerializeField]
-		protected string[] _childFolders;
+		protected FolderRef[] _childFolders;
 
 		[Output(backingValue = ShowBackingValue.Never)]
 		[SerializeField]
-		protected string[] _outputFolders;
+		protected FolderRef[] _outputFolders;
+
+		#pragma warning restore 0649
 
 		public override void OnCreateConnection(NodePort from, NodePort to)
 		{

@@ -7,9 +7,15 @@ namespace JCMG.COC.Editor
 	[CreateNodeMenu("JCMG COC/Folder List")]
 	internal sealed class FolderListNode : HierarchyNodeBase
 	{
+		internal FolderRef[] FolderRefs => _folderRefs;
+
+		#pragma warning disable 0649
+
 		[Output(ShowBackingValue.Always)]
 		[SerializeField]
-		private string[] _folderNames;
+		private FolderRef[] _folderRefs;
+
+		#pragma warning restore 0649
 
 		public override void OnCreateConnection(NodePort @from, NodePort to)
 		{
@@ -23,7 +29,7 @@ namespace JCMG.COC.Editor
 
 		public override object GetValue(NodePort port)
 		{
-			return _folderNames.Distinct().ToArray();
+			return _folderRefs.Distinct().ToArray();
 		}
 	}
 }

@@ -10,14 +10,12 @@ namespace JCMG.COC.Editor
 		public override int GetWidth()
 		{
 			var node = (DisplayFolderPathsNode)target;
-
 			var displayFolderPaths = node.DisplayFolderPaths;
 			var baseWidth = 150;
 			var width = base.GetWidth();
 			for (var i = 0; i < displayFolderPaths.Length; i++)
 			{
 				var newWidth = EditorStyles.textField.CalcSize(new GUIContent(displayFolderPaths[i]));
-
 				if (newWidth.x + baseWidth > width)
 				{
 					width = Mathf.CeilToInt(newWidth.x) + baseWidth;

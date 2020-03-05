@@ -8,8 +8,13 @@ namespace JCMG.COC.Editor
 	[CreateNodeMenu("JCMG COC/Folder")]
 	internal sealed class FolderNode : FolderNodeBase
 	{
+		#pragma warning disable 0649
+
+		[HideInInspector]
 		[SerializeField]
-		private string _folderName;
+		private FolderRef _folderRef;
+
+		#pragma warning restore 0649
 
 		public override void OnCreateConnection(NodePort from, NodePort to)
 		{
@@ -38,9 +43,11 @@ namespace JCMG.COC.Editor
 		/// </summary>
 		internal override void Update()
 		{
-			var isFolderNameValid = !string.IsNullOrEmpty(_folderName);
-			var childFolderArrays = GetInputValues(nameof(_childFolders), new object[0]);
-			var length = childFolderArrays.Sum(x => ((string[])x).Length);
+			var isFolderNameValid = !string.IsNullOrEmpty(_folderRef.FolderName);
+			var childFolderArrays = GetInputValues(nameof(_childFolders), new object[0])
+				.OfType<FolderRef[]>()
+				.ToArray();
+			var length = childFolderArrays.Sum(x => x.Length);
 
 			// If there are not any child folders from other nodes present, return this folder as the
 			// array of output folders.
@@ -48,26 +55,32 @@ namespace JCMG.COC.Editor
 			{
 				_outputFolders = new[]
 				{
-					_folderName
+					_folderRef
 				};
 			}
 			else if(length > 0 && isFolderNameValid)
 			{
-				_outputFolders = new string[length];
+				_outputFolders = new FolderRef[length];
 
 				var current = 0;
 				for (var i = 0; i < childFolderArrays.Length; i++)
 				{
-					var childFolderArray = (string[])childFolderArrays[i];
+					var childFolderArray = childFolderArrays[i];
 					for (var j = 0; j < childFolderArray.Length; j++)
 					{
-						_outputFolders[current++] = Path.Combine(_folderName, childFolderArray[j]);
+						var childFolderRef = childFolderArray[j];
+						var newFolderRef = new FolderRef
+						{
+							FolderName = Path.Combine(_folderRef.FolderName, childFolderRef.FolderName)
+						};
+
+						_outputFolders[current++] = newFolderRef;
 					}
 				}
 			}
 			else
 			{
-				_outputFolders = new string[0];
+				_outputFolders = new FolderRef[0];
 			}
 
 			// Make base call to trigger update on all output ports

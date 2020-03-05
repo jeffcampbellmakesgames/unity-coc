@@ -33,14 +33,14 @@ namespace JCMG.COC.Editor
 					var assetRootNode = assetNodeLists[i];
 					var outputPort = assetRootNode.GetOutputPort("_outputFolders");
 					var projectPath = COCUtility.GetUnityProjectRoot();
-					var outputPaths = outputPort.GetOutputValue() as string[];
+					var outputPaths = outputPort.GetOutputValue() as FolderRef[];
 
 					if (outputPaths != null)
 					{
 						for (var j = 0; j < outputPaths.Length; j++)
 						{
-							var outputPath = outputPaths[j];
-							var fullPath = Path.Combine(projectPath, outputPath);
+							var outputPathRef = outputPaths[j];
+							var fullPath = Path.Combine(projectPath, outputPathRef.FolderName);
 
 							if (!Directory.Exists(fullPath))
 							{
