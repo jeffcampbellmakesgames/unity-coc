@@ -1,4 +1,6 @@
 ﻿/*
+MIT License
+
 Copyright (c) 2020 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,35 +21,58 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+#if UNIT_TESTS_NEWER_THAN_1_1_9
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using JCMG.COC.Editor;
+using NUnit.Framework;
 
-namespace JCMG.COC.Editor
+namespace Editor.Tests
 {
-	public static class ReflectionUtility
+	[TestFixture]
+	internal sealed class ReflectionToolTests
 	{
-		/// <summary>
-		///     Returns an IEnumerable of class instances of Types derived from T that are not abstract or generic
-		///     and have a default, empty constructor.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <returns></returns>
-		public static IEnumerable<T> GetAllDerivedInstancesOfType<T>() where T : class
+		private readonly List<A> allSubclassesOfA = new List<A>
 		{
-			var objects = new List<T>();
-			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-			foreach (var assembly in assemblies)
-			foreach (var type in assembly.GetTypes()
-				.Where(myType => myType.IsClass &&
-				                 !myType.IsAbstract &&
-				                 !myType.IsGenericType &&
-				                 myType.IsSubclassOf(typeof(T)) &&
-				                 myType.GetConstructor(Type.EmptyTypes) != null))
-				objects.Add((T) Activator.CreateInstance(type));
+			new B(),
+			new C(),
+			new D()
+		};
 
-			return objects;
+		[Test]
+		public void AssertReflectionUtilityCanDeriveAllNestedSubclasses()
+		{
+			var allReflectionDerivedSubclassesOfA = new List<A>();
+			allReflectionDerivedSubclassesOfA.AddRange(ReflectionTools.GetAllDerivedInstancesOfType<A>());
+
+			Assert.AreEqual(3, allReflectionDerivedSubclassesOfA.Count);
+			for (var i = 0; i < allSubclassesOfA.Count; i++)
+			{
+				Assert.IsTrue(
+					allReflectionDerivedSubclassesOfA.Exists(x => x.GetType() == allSubclassesOfA[i].GetType()));
+			}
 		}
+
+		#region TestClasses
+
+		public class A
+		{
+		}
+
+		public class B : A
+		{
+		}
+
+		public class C : A
+		{
+		}
+
+		public class D : B
+		{
+		}
+
+		#endregion
 	}
 }
+
+#endif

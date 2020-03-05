@@ -1,4 +1,6 @@
 ﻿/*
+MIT License
+
 Copyright (c) 2020 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,54 +21,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+using System.Runtime.CompilerServices;
 
-using System.Collections.Generic;
-using NUnit.Framework;
-
-namespace JCMG.COC.Editor.Tests
-{
-	[TestFixture]
-	public class ReflectionUtilityTests
-	{
-		private readonly List<A> allSubclassesOfA = new List<A>
-		{
-			new B(),
-			new C(),
-			new D()
-		};
-
-		[Test]
-		public void AssertReflectionUtilityCanDeriveAllNestedSubclasses()
-		{
-			var allReflectionDerivedSubclassesOfA = new List<A>();
-			allReflectionDerivedSubclassesOfA.AddRange(ReflectionUtility.GetAllDerivedInstancesOfType<A>());
-
-			Assert.AreEqual(3, allReflectionDerivedSubclassesOfA.Count);
-			for (var i = 0; i < allSubclassesOfA.Count; i++)
-			{
-				Assert.IsTrue(
-					allReflectionDerivedSubclassesOfA.Exists(x => x.GetType() == allSubclassesOfA[i].GetType()));
-			}
-		}
-
-		#region TestClasses
-
-		public class A
-		{
-		}
-
-		public class B : A
-		{
-		}
-
-		public class C : A
-		{
-		}
-
-		public class D : B
-		{
-		}
-
-		#endregion
-	}
-}
+[assembly: InternalsVisibleTo("JCMG.COC.Editor.Tests")]

@@ -1,4 +1,6 @@
 ﻿/*
+MIT License
+
 Copyright (c) 2020 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,7 +21,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
 using System;
 using System.IO;
 using UnityEditor;
@@ -47,31 +48,10 @@ namespace JCMG.COC.Editor
 			}
 
 			// Initialize any root domain folders and paths
-			if (!Directory.Exists(Path.Combine(COCUtility.GetUnityAssetRoot(), COCUtility.GAME_ASSET_ROOT)))
-				COCUtility.CreateGameRoot();
-
-			var allCOCDomains = (COCDomain[]) Enum.GetValues(typeof(COCDomain));
-			foreach (var cocDomain in allCOCDomains)
-			{
-				var relativeFolderPath = COCUtility.GetGamePath(cocDomain);
-				var absoluteFolderPath = Path.Combine(COCUtility.GetUnityAssetRoot(), relativeFolderPath);
-				if (!Directory.Exists(absoluteFolderPath))
-				{
-					Directory.CreateDirectory(absoluteFolderPath);
-
-					Debug.LogFormat("[COC] Folder created at \"{0}\"", absoluteFolderPath);
-				}
-
-				COCUtility.PreserveRelativeFolderPath(COCUtility.GetGamePath(cocDomain));
-			}
+			// TODO Find and execute all eligible graphs
 
 			// Set the scripting symbol for COC
-			PlayerSettingsUtility.AddScriptingSymbolIfNotDefined(SCRIPTING_SYMBOL);
-
-			// Search through the project for all derived classes of COCProviderBase
-			// and add their conventions to the project
-			var cocProviders = ReflectionUtility.GetAllDerivedInstancesOfType<COCProviderBase>();
-			foreach (var cocProvider in cocProviders) cocProvider.AddConventions();
+			PlayerSettingsTools.AddScriptingSymbolIfNotDefined(SCRIPTING_SYMBOL);
 
 			AssetDatabase.Refresh();
 		}

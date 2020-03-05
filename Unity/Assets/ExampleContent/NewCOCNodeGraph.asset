@@ -24,7 +24,7 @@ MonoBehaviour:
       _fieldName: _childFolders
       _node: {fileID: -5001142346593170054}
       _typeConstraint: 2
-      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], Assembly-CSharp-Editor, Version=0.0.0.0,
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _outputFolders
@@ -36,7 +36,7 @@ MonoBehaviour:
       _fieldName: _outputFolders
       _node: {fileID: -5001142346593170054}
       _typeConstraint: 0
-      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], Assembly-CSharp-Editor, Version=0.0.0.0,
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _folderPaths
@@ -75,7 +75,7 @@ MonoBehaviour:
       _fieldName: _childFolders
       _node: {fileID: -4940252985104546387}
       _typeConstraint: 2
-      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], Assembly-CSharp-Editor, Version=0.0.0.0,
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _folderRefs
@@ -87,7 +87,7 @@ MonoBehaviour:
       _fieldName: _outputFolders
       _node: {fileID: -4940252985104546387}
       _typeConstraint: 0
-      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], Assembly-CSharp-Editor, Version=0.0.0.0,
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _childFolders
@@ -125,7 +125,7 @@ MonoBehaviour:
       _fieldName: _childFolders
       _node: {fileID: -2966282699114077395}
       _typeConstraint: 2
-      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], Assembly-CSharp-Editor, Version=0.0.0.0,
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _outputFolders
@@ -140,7 +140,7 @@ MonoBehaviour:
       _fieldName: _outputFolders
       _node: {fileID: -2966282699114077395}
       _typeConstraint: 0
-      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], Assembly-CSharp-Editor, Version=0.0.0.0,
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _childFolders
@@ -238,7 +238,7 @@ MonoBehaviour:
       _fieldName: _childFolders
       _node: {fileID: 3961025852682743622}
       _typeConstraint: 2
-      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], Assembly-CSharp-Editor, Version=0.0.0.0,
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _folderRefs
@@ -250,7 +250,7 @@ MonoBehaviour:
       _fieldName: _outputFolders
       _node: {fileID: 3961025852682743622}
       _typeConstraint: 0
-      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], Assembly-CSharp-Editor, Version=0.0.0.0,
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _childFolders
@@ -287,7 +287,7 @@ MonoBehaviour:
       _fieldName: _folderRefs
       _node: {fileID: 5665735020392798577}
       _typeConstraint: 0
-      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], Assembly-CSharp-Editor, Version=0.0.0.0,
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _childFolders
@@ -296,7 +296,7 @@ MonoBehaviour:
       - fieldName: _childFolders
         node: {fileID: -4940252985104546387}
         reroutePoints: []
-  position: {x: -184, y: -168}
+  position: {x: -200, y: -168}
   _folderRefs:
   - _folderName: Art
   - _folderName: Prefabs

@@ -1,4 +1,6 @@
 ﻿/*
+MIT License
+
 Copyright (c) 2020 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,13 +21,20 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
 using UnityEditor;
 
 namespace JCMG.COC.Editor
 {
-	public static class PlayerSettingsUtility
+	/// <summary>
+	/// Helper methods for <seealso cref="PlayerSettings"/>.
+	/// </summary>
+	internal static class PlayerSettingsTools
 	{
+		/// <summary>
+		/// Returns true if a scripting symbol is found matching <paramref name="symbol"/>, otherwise false.
+		/// </summary>
+		/// <param name="symbol"></param>
+		/// <returns></returns>
 		public static bool IsScriptingSymbolDefined(string symbol)
 		{
 			var currentBuildGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
@@ -33,26 +42,44 @@ namespace JCMG.COC.Editor
 			var scriptingSymbols = scriptingSymbolStr.Split(';');
 
 			foreach (var scriptingSymbol in scriptingSymbols)
+			{
 				if (symbol == scriptingSymbol)
+				{
 					return true;
+				}
+			}
 
 			return false;
 		}
 
+		/// <summary>
+		/// Adds a new scripting symbol matching <paramref name="symbol"/> to the <seealso cref="PlayerSettings"/> if
+		/// not already defined.
+		/// </summary>
+		/// <param name="symbol"></param>
 		public static void AddScriptingSymbolIfNotDefined(string symbol)
 		{
-			if (IsScriptingSymbolDefined(symbol)) return;
+			if (IsScriptingSymbolDefined(symbol))
+			{
+				return;
+			}
 
 			var currentBuildGroup = EditorUserBuildSettings.selectedBuildTargetGroup;
 			var scriptingSymbolStr = PlayerSettings.GetScriptingDefineSymbolsForGroup(currentBuildGroup);
 
 			// Add the new symbol to the list of symbols, always ensuring there is a semi-colon separating all symbols
 			if (string.IsNullOrEmpty(scriptingSymbolStr))
+			{
 				scriptingSymbolStr = string.Format("{0}", symbol);
+			}
 			else if (scriptingSymbolStr[scriptingSymbolStr.Length - 1] == ';')
+			{
 				scriptingSymbolStr += string.Format("{0}", symbol);
+			}
 			else
+			{
 				scriptingSymbolStr += string.Format(";{0}", symbol);
+			}
 
 			PlayerSettings.SetScriptingDefineSymbolsForGroup(currentBuildGroup, scriptingSymbolStr);
 		}

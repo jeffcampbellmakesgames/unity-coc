@@ -1,4 +1,6 @@
 /*
+MIT License
+
 Copyright (c) 2020 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,7 +21,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
 using System.IO;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -28,11 +29,17 @@ using UnityEngine.Assertions;
 
 namespace JCMG.COC.Editor
 {
-	public static class COCUtility
+	/// <summary>
+	/// Helper methods for COC
+	/// </summary>
+	public static class COCTools
 	{
 		// Path Consts
 		public const string ASSET_ROOT = "Assets";
 		public const string GAME_ASSET_ROOT = "Game";
+
+		// Logs
+		public const string FOLDER_CREATED_LOG = "[COC] Folder created at \"{0}\"";
 
 		// Hidden File Consts
 		private const string GIT_KEEP_FILE_NAME = ".gitkeep";
@@ -61,23 +68,6 @@ namespace JCMG.COC.Editor
 		public static string GetProjectPath(params string[] args)
 		{
 			return Path.Combine(ASSET_ROOT, GetPath(args));
-		}
-
-		/// <summary>
-		///     Returns a path starting from the game asset root and domain and descending down an array
-		///     of subfolders corresponding to args.
-		/// </summary>
-		/// <param name="domain">
-		///     The COCDomain to reference in the path.
-		/// </param>
-		/// <param name="args">
-		///     An optional array of subfolders where each folder in the array relates
-		///     as a subfolder to the previous index.
-		/// </param>
-		/// <returns></returns>
-		public static string GetGamePath(COCDomain domain, params string[] args)
-		{
-			return Path.Combine(GAME_ASSET_ROOT, domain.ToString(), GetPath(args));
 		}
 
 		/// <summary>
@@ -114,11 +104,6 @@ namespace JCMG.COC.Editor
 			var finalPath = Path.Combine(absoluteFolderPath, GIT_KEEP_FILE_NAME);
 
 			File.WriteAllText(finalPath, GIT_KEEP_FILE_CONTENT);
-		}
-
-		public static void CreateGameRoot()
-		{
-			Directory.CreateDirectory(Path.Combine(GetUnityAssetRoot(), GAME_ASSET_ROOT));
 		}
 
 		/// <summary>

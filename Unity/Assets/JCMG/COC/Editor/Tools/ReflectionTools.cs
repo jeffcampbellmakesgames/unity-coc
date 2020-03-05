@@ -1,4 +1,6 @@
 ﻿/*
+MIT License
+
 Copyright (c) 2020 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -19,23 +21,41 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
 using System;
-
-// ReSharper disable InconsistentNaming
+using System.Collections.Generic;
+using System.Linq;
 
 namespace JCMG.COC.Editor
 {
-	[Serializable]
-	public enum COCDomain
+	/// <summary>
+	/// Helper methods for reflection
+	/// </summary>
+	internal static class ReflectionTools
 	{
-		Art,
-		Audio,
-		Data,
-		Fonts,
-		Prefabs,
-		Shaders,
-		Scenes,
-		Scripts
+		/// <summary>
+		///     Returns an IEnumerable of class instances of Types derived from T that are not abstract or generic
+		///     and have a default, empty constructor.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public static IEnumerable<T> GetAllDerivedInstancesOfType<T>() where T : class
+		{
+			var objects = new List<T>();
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			foreach (var assembly in assemblies)
+			{
+				foreach (var type in assembly.GetTypes()
+					.Where(myType => myType.IsClass &&
+					                 !myType.IsAbstract &&
+					                 !myType.IsGenericType &&
+					                 myType.IsSubclassOf(typeof(T)) &&
+					                 myType.GetConstructor(Type.EmptyTypes) != null))
+				{
+					objects.Add((T) Activator.CreateInstance(type));
+				}
+			}
+
+			return objects;
+		}
 	}
 }
