@@ -62,7 +62,7 @@ namespace JCMG.COC.Editor
 					Debug.LogFormat("[COC] Folder created at \"{0}\"", absoluteFolderPath);
 				}
 
-				COCUtility.PreserveFolder(COCUtility.GetGamePath(cocDomain));
+				COCUtility.PreserveRelativeFolderPath(COCUtility.GetGamePath(cocDomain));
 			}
 
 			// Set the scripting symbol for COC

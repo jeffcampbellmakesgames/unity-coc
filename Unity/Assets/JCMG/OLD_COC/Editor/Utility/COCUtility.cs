@@ -22,6 +22,7 @@ SOFTWARE.
 
 using System.IO;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 // ReSharper disable InconsistentNaming
 
@@ -95,9 +96,22 @@ namespace JCMG.COC.Editor
 		///     This is because git ultimately tracks files, not folders.
 		/// </summary>
 		/// <param name="relativeUnityAssetPath"></param>
-		public static void PreserveFolder(string relativeUnityAssetPath)
+		public static void PreserveRelativeFolderPath(string relativeUnityAssetPath)
 		{
 			var finalPath = Path.Combine(GetUnityAssetRoot(), relativeUnityAssetPath, GIT_KEEP_FILE_NAME);
+
+			File.WriteAllText(finalPath, GIT_KEEP_FILE_CONTENT);
+		}
+
+		/// <summary>
+		///     Ensures that any folder that is created, but may be potentially empty
+		///     is preserved in git commites by creating a hidden .gitkeep file in it.
+		///     This is because git ultimately tracks files, not folders.
+		/// </summary>
+		/// <param name="absoluteFolderPath"></param>
+		public static void PreserveFullFolderPath(string absoluteFolderPath)
+		{
+			var finalPath = Path.Combine(absoluteFolderPath, GIT_KEEP_FILE_NAME);
 
 			File.WriteAllText(finalPath, GIT_KEEP_FILE_CONTENT);
 		}
@@ -114,6 +128,19 @@ namespace JCMG.COC.Editor
 		public static string GetUnityAssetRoot()
 		{
 			return new DirectoryInfo(Application.dataPath).FullName;
+		}
+
+		/// <summary>
+		///     Returns a full path to the Unity project folder.
+		/// </summary>
+		/// <returns></returns>
+		public static string GetUnityProjectRoot()
+		{
+			var parentFolder = new DirectoryInfo(Application.dataPath).Parent;
+
+			Assert.IsNotNull(parentFolder);
+
+			return parentFolder?.FullName;
 		}
 	}
 }

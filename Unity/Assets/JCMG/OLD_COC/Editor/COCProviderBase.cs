@@ -55,7 +55,7 @@ namespace JCMG.COC.Editor
 				Debug.LogFormat("[COC] Folder created at \"{0}\"", absoluteFolderPath);
 			}
 
-			COCUtility.PreserveFolder(relativeFolderPath);
+			COCUtility.PreserveRelativeFolderPath(relativeFolderPath);
 		}
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace JCMG.COC.Editor
 				Debug.LogFormat("[COC] Folder created at \"{0}\"", absoluteFolderPath);
 			}
 
-			COCUtility.PreserveFolder(relativeFolderPath);
+			COCUtility.PreserveRelativeFolderPath(relativeFolderPath);
 		}
 	}
 }

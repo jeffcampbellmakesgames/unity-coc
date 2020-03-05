@@ -1,0 +1,568 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8073008523507298895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00989f50566143d4cad4ecaee1c48ea2, type: 3}
+  m_Name: Folder List
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _folderNames
+    values:
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _folderNames
+      _node: {fileID: -8073008523507298895}
+      _typeConstraint: 0
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: -1807629683795108465}
+        reroutePoints: []
+      - fieldName: _childFolders
+        node: {fileID: 3966131783988456248}
+        reroutePoints: []
+  position: {x: -520, y: -184}
+  _folderNames:
+  - Art
+  - Materials
+  - Prefabs
+  - Data
+  - Scripts
+--- !u!114 &-4995836053009707634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9bd3ecf475e6394cb650921153cf6d8, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - OutputFolders
+    - ChildFolders
+    values:
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: OutputFolders
+      _node: {fileID: -4995836053009707634}
+      _typeConstraint: 0
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ChildFolders
+        node: {fileID: 6139983447201672670}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: ChildFolders
+      _node: {fileID: -4995836053009707634}
+      _typeConstraint: 2
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: OutputFolders
+        node: {fileID: -721253979858689704}
+        reroutePoints: []
+      - fieldName: FolderNames
+        node: {fileID: 5817112069488972179}
+        reroutePoints: []
+  position: {x: -136, y: -24}
+  OutputFolders:
+  - Game Two\Data
+  - Game Two\Art
+  - Game Two\Materials
+  - Game Two\Scripts
+  - Game Two\Prefabs
+  ChildFolders: []
+  _folderName: Game Two
+--- !u!114 &-3303814108872066932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417c9da1774ca7b4480e583cc8564223, type: 3}
+  m_Name: Display Folder Paths
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _folderPaths
+    values:
+    - _connectionType: 1
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _folderPaths
+      _node: {fileID: -3303814108872066932}
+      _typeConstraint: 2
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _outputFolders
+        node: {fileID: 2408161621920561475}
+        reroutePoints: []
+  position: {x: 568, y: -136}
+  _folderPaths: []
+  _displayFolderPaths:
+  - Assets\Games\Galaxy Cadet\Art
+  - Assets\Games\Galaxy Cadet\Materials
+  - Assets\Games\Galaxy Cadet\Prefabs
+  - Assets\Games\Galaxy Cadet\Data
+  - Assets\Games\Galaxy Cadet\Scripts
+  - Assets\Games\Creature\Art
+  - Assets\Games\Creature\Materials
+  - Assets\Games\Creature\Prefabs
+  - Assets\Games\Creature\Data
+  - Assets\Games\Creature\Scripts
+--- !u!114 &-1807629683795108465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773cb5c6bbcd7a749a234ba3d26a39be, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    - _outputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: -1807629683795108465}
+      _typeConstraint: 2
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _folderNames
+        node: {fileID: -8073008523507298895}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _outputFolders
+      _node: {fileID: -1807629683795108465}
+      _typeConstraint: 0
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: 2049613125795788709}
+        reroutePoints: []
+  position: {x: -200, y: -40}
+  _childFolders: []
+  _outputFolders:
+  - Galaxy Cadet\Art
+  - Galaxy Cadet\Materials
+  - Galaxy Cadet\Prefabs
+  - Galaxy Cadet\Data
+  - Galaxy Cadet\Scripts
+  _folderName: Galaxy Cadet
+--- !u!114 &-1756556065782320993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9bd3ecf475e6394cb650921153cf6d8, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - OutputFolders
+    - ChildFolders
+    values:
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: OutputFolders
+      _node: {fileID: -1756556065782320993}
+      _typeConstraint: 0
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ChildFolders
+        node: {fileID: 6139983447201672670}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: ChildFolders
+      _node: {fileID: -1756556065782320993}
+      _typeConstraint: 2
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: FolderNames
+        node: {fileID: 5817112069488972179}
+        reroutePoints: []
+  position: {x: -136, y: -264}
+  OutputFolders:
+  - Game One\Art
+  - Game One\Materials
+  - Game One\Scripts
+  - Game One\Prefabs
+  ChildFolders: []
+  _folderName: Game One
+--- !u!114 &-721253979858689704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9bd3ecf475e6394cb650921153cf6d8, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - OutputFolders
+    - ChildFolders
+    values:
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: OutputFolders
+      _node: {fileID: -721253979858689704}
+      _typeConstraint: 0
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ChildFolders
+        node: {fileID: -4995836053009707634}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: ChildFolders
+      _node: {fileID: -721253979858689704}
+      _typeConstraint: 2
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections: []
+  position: {x: -408, y: 72}
+  OutputFolders:
+  - Data
+  ChildFolders: []
+  _folderName: Data
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0d2a7a7118b844ba8f56cda611a9ff, type: 3}
+  m_Name: New COC Node Graph
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -3303814108872066932}
+  - {fileID: 2408161621920561475}
+  - {fileID: 3966131783988456248}
+  - {fileID: -1807629683795108465}
+  - {fileID: -8073008523507298895}
+  - {fileID: 2049613125795788709}
+--- !u!114 &2049613125795788709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773cb5c6bbcd7a749a234ba3d26a39be, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    - _outputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: 2049613125795788709}
+      _typeConstraint: 2
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _outputFolders
+        node: {fileID: -1807629683795108465}
+        reroutePoints: []
+      - fieldName: _outputFolders
+        node: {fileID: 3966131783988456248}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _outputFolders
+      _node: {fileID: 2049613125795788709}
+      _typeConstraint: 0
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: 2408161621920561475}
+        reroutePoints: []
+  position: {x: 88, y: -136}
+  _childFolders: []
+  _outputFolders:
+  - Games\Galaxy Cadet\Art
+  - Games\Galaxy Cadet\Materials
+  - Games\Galaxy Cadet\Prefabs
+  - Games\Galaxy Cadet\Data
+  - Games\Galaxy Cadet\Scripts
+  - Games\Creature\Art
+  - Games\Creature\Materials
+  - Games\Creature\Prefabs
+  - Games\Creature\Data
+  - Games\Creature\Scripts
+  _folderName: Games
+--- !u!114 &2408161621920561475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd9b8478be756345b63743ab2ebdae6, type: 3}
+  m_Name: Asset Root
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    - _outputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: 2408161621920561475}
+      _typeConstraint: 2
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _outputFolders
+        node: {fileID: 2049613125795788709}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _outputFolders
+      _node: {fileID: 2408161621920561475}
+      _typeConstraint: 0
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _folderPaths
+        node: {fileID: -3303814108872066932}
+        reroutePoints: []
+  position: {x: 312, y: -136}
+  _childFolders:
+  - Prefabs
+  - Data
+  - Scripts
+  - Art
+  - Materials
+  _outputFolders:
+  - Assets\Games\Galaxy Cadet\Art
+  - Assets\Games\Galaxy Cadet\Materials
+  - Assets\Games\Galaxy Cadet\Prefabs
+  - Assets\Games\Galaxy Cadet\Data
+  - Assets\Games\Galaxy Cadet\Scripts
+  - Assets\Games\Creature\Art
+  - Assets\Games\Creature\Materials
+  - Assets\Games\Creature\Prefabs
+  - Assets\Games\Creature\Data
+  - Assets\Games\Creature\Scripts
+--- !u!114 &3966131783988456248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773cb5c6bbcd7a749a234ba3d26a39be, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    - _outputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: 3966131783988456248}
+      _typeConstraint: 2
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _folderNames
+        node: {fileID: -8073008523507298895}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _outputFolders
+      _node: {fileID: 3966131783988456248}
+      _typeConstraint: 0
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: 2049613125795788709}
+        reroutePoints: []
+  position: {x: -200, y: -232}
+  _childFolders: []
+  _outputFolders:
+  - Creature\Art
+  - Creature\Materials
+  - Creature\Prefabs
+  - Creature\Data
+  - Creature\Scripts
+  _folderName: Creature
+--- !u!114 &5817112069488972179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccfa140ad84709428a51e734bea8934, type: 3}
+  m_Name: Folder List
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - FolderNames
+    values:
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: FolderNames
+      _node: {fileID: 5817112069488972179}
+      _typeConstraint: 0
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: ChildFolders
+        node: {fileID: -1756556065782320993}
+        reroutePoints: []
+      - fieldName: ChildFolders
+        node: {fileID: -4995836053009707634}
+        reroutePoints: []
+  position: {x: -408, y: -152}
+  FolderNames: []
+  _folderNames:
+  - Art
+  - Materials
+  - Scripts
+  - Prefabs
+--- !u!114 &6139983447201672670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c16aa96041dec34aa7947db34f2f08c, type: 3}
+  m_Name: Asset Root
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - ChildFolders
+    - OutputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: ChildFolders
+      _node: {fileID: 6139983447201672670}
+      _typeConstraint: 2
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: OutputFolders
+        node: {fileID: -4995836053009707634}
+        reroutePoints: []
+      - fieldName: OutputFolders
+        node: {fileID: -1756556065782320993}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: OutputFolders
+      _node: {fileID: 6139983447201672670}
+      _typeConstraint: 0
+      _typeQualifiedName: System.String[], mscorlib, Version=4.0.0.0, Culture=neutral,
+        PublicKeyToken=b77a5c561934e089
+      connections:
+      - fieldName: _folderPaths
+        node: {fileID: -3303814108872066932}
+        reroutePoints: []
+  position: {x: 120, y: -152}
+  ChildFolders: []
+  OutputFolders: []
+  _childFolders:
+  - Assets\Game Two\Data
+  - Assets\Game Two\Art
+  - Assets\Game Two\Materials
+  - Assets\Game Two\Scripts
+  - Assets\Game Two\Prefabs
+  - Assets\Game One\Art
+  - Assets\Game One\Materials
+  - Assets\Game One\Scripts
+  - Assets\Game One\Prefabs
