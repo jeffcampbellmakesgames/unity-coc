@@ -34,27 +34,10 @@ namespace JCMG.COC.Editor
 	/// </summary>
 	public static class COCTools
 	{
-		// Path Consts
-		public const string ASSET_ROOT = "Assets";
-		public const string GAME_ASSET_ROOT = "Game";
-
-		// Logs
-		public const string FOLDER_CREATED_LOG = "[COC] Folder created at \"{0}\"";
-
-		// Hidden File Consts
+		// Hidden File Used to Preserve Folders in Git
 		private const string GIT_KEEP_FILE_NAME = ".gitkeep";
-
 		private const string GIT_KEEP_FILE_CONTENT =
 			"This hidden file is created to preserve potentially empty folders in git commits.";
-
-		/// <summary>
-		/// Returns a full path to the the project folder.
-		/// </summary>
-		/// <returns></returns>
-		public static string GetFullPathToProject()
-		{
-			return Path.GetFullPath(Application.dataPath.Remove(Application.dataPath.Length - ASSET_ROOT.Length));
-		}
 
 		/// <summary>
 		///     Returns a path starting from the Unity Assets folder and descending down an array
@@ -65,9 +48,9 @@ namespace JCMG.COC.Editor
 		///     as a subfolder to the previous index.
 		/// </param>
 		/// <returns></returns>
-		public static string GetProjectPath(params string[] args)
+		public static string GetRelativeProjectAssetsPath(params string[] args)
 		{
-			return Path.Combine(ASSET_ROOT, GetPath(args));
+			return Path.Combine(COCEditorConstants.ASSET_ROOT, GetPath(args));
 		}
 
 		/// <summary>
@@ -81,8 +64,21 @@ namespace JCMG.COC.Editor
 		}
 
 		/// <summary>
+		///     Returns a full path to the Unity project folder.
+		/// </summary>
+		/// <returns></returns>
+		public static string GetAbsolutePathToProject()
+		{
+			var parentFolder = new DirectoryInfo(Application.dataPath).Parent;
+
+			Assert.IsNotNull(parentFolder);
+
+			return parentFolder?.FullName;
+		}
+
+		/// <summary>
 		///     Ensures that any folder that is created, but may be potentially empty
-		///     is preserved in git commites by creating a hidden .gitkeep file in it.
+		///     is preserved in git commits by creating a hidden .gitkeep file in it.
 		///     This is because git ultimately tracks files, not folders.
 		/// </summary>
 		/// <param name="relativeUnityAssetPath"></param>
@@ -95,7 +91,7 @@ namespace JCMG.COC.Editor
 
 		/// <summary>
 		///     Ensures that any folder that is created, but may be potentially empty
-		///     is preserved in git commites by creating a hidden .gitkeep file in it.
+		///     is preserved in git commits by creating a hidden .gitkeep file in it.
 		///     This is because git ultimately tracks files, not folders.
 		/// </summary>
 		/// <param name="absoluteFolderPath"></param>
@@ -110,22 +106,9 @@ namespace JCMG.COC.Editor
 		///     This is used in place of Application.dataPath to get a local Platform supported path
 		/// </summary>
 		/// <returns></returns>
-		public static string GetUnityAssetRoot()
+		private static string GetUnityAssetRoot()
 		{
 			return new DirectoryInfo(Application.dataPath).FullName;
-		}
-
-		/// <summary>
-		///     Returns a full path to the Unity project folder.
-		/// </summary>
-		/// <returns></returns>
-		public static string GetUnityProjectRoot()
-		{
-			var parentFolder = new DirectoryInfo(Application.dataPath).Parent;
-
-			Assert.IsNotNull(parentFolder);
-
-			return parentFolder?.FullName;
 		}
 	}
 }

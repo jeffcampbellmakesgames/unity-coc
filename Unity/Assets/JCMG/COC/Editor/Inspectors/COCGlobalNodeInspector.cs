@@ -21,25 +21,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using UnityEditor;
+using xNode.Editor;
 
 namespace JCMG.COC.Editor
 {
 	/// <summary>
-	/// Menu items for this library.
+	/// For all COC node assets, ensure that no inspector GUI contents are drawn.
 	/// </summary>
-	internal static class COCMenuItems
+	[CustomEditor(typeof(HierarchyNodeBase), true)]
+	internal sealed class COCGlobalNodeInspector : GlobalNodeEditor
 	{
-		[MenuItem("Tools/JCMG/COC/Evaluate all COC Node Graphs")]
-		internal static void RunAllCOCNodeGraphs()
+		/// <summary>
+		///   <para>Implement this function to make a custom inspector.</para>
+		/// </summary>
+		public override void OnInspectorGUI()
 		{
-			COCInitializer.EnsureSetup();
-		}
-
-		[MenuItem("Tools/JCMG/COC/Evaluate all COC Node Graphs", true)]
-		internal static bool ValidateRunAllCOCNodeGraphs()
-		{
-			return AssetDatabase.FindAssets(COCEditorConstants.FIND_ALL_GRAPHS_FILTER).Length > 0;
+			// Draw no inspector GUI for these nodes.
 		}
 	}
 }

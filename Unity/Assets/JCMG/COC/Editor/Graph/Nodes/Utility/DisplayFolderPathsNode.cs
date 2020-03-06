@@ -27,7 +27,7 @@ using XNode;
 
 namespace JCMG.COC.Editor
 {
-	[CreateNodeMenu("JCMG COC/Utility/Display Folder Paths")]
+	[CreateNodeMenu("Utility/Display Folder Paths")]
 	internal sealed class DisplayFolderPathsNode : HierarchyNodeBase
 	{
 		internal string[] DisplayFolderPaths => _displayFolderPaths;

@@ -24,11 +24,13 @@ SOFTWARE.
 using UnityEditor;
 using UnityEngine;
 
-namespace JCMG.COC.Editor.Drawers
+namespace JCMG.COC.Editor
 {
 	[CustomPropertyDrawer(typeof(FolderRef))]
 	internal sealed class FolderRefPropertyDrawer : PropertyDrawer
 	{
+		private const string FOLDER_NAME_PROP_NAME = "_folderName";
+
 		/// <summary>
 		///   <para>Override this method to make your own IMGUI based GUI for the property.</para>
 		/// </summary>
@@ -45,7 +47,7 @@ namespace JCMG.COC.Editor.Drawers
 
 			// Draw property fields
 			var singleLineHeight = EditorGUIUtility.singleLineHeight;
-			var folderNameProperty = property.FindPropertyRelative("_folderName");
+			var folderNameProperty = property.FindPropertyRelative(FOLDER_NAME_PROP_NAME);
 			var isFolderNameValid = !string.IsNullOrEmpty(folderNameProperty.stringValue);
 			var folderNameRect = new Rect(
 				position.x,

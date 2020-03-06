@@ -28,7 +28,10 @@ using XNode;
 
 namespace JCMG.COC.Editor
 {
-	[CreateNodeMenu("JCMG COC/Folder")]
+	/// <summary>
+	/// A node representing a single folder with zero or more child folders.
+	/// </summary>
+	[CreateNodeMenu("Folder")]
 	internal sealed class FolderNode : FolderNodeBase
 	{
 		#pragma warning disable 0649

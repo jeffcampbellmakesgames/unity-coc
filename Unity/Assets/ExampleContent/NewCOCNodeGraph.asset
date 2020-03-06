@@ -176,6 +176,7 @@ MonoBehaviour:
   - {fileID: 606152394095873353}
   - {fileID: 5665735020392798577}
   - {fileID: -2966282699114077395}
+  _includeInAutomaticGeneration: 0
 --- !u!114 &606152394095873353
 MonoBehaviour:
   m_ObjectHideFlags: 0

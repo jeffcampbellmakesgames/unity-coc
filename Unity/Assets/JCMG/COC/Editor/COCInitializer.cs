@@ -21,8 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -30,14 +30,11 @@ using UnityEngine;
 
 namespace JCMG.COC.Editor
 {
-	public static class COCInitializer
+	internal static class COCInitializer
 	{
-		// ScriptingSymbol
-		private const string SCRIPTING_SYMBOL = "JCMG_COC";
-
 		/// <summary>
-		///     EnsureSetup will rerun the AddConvention initialization process to create the necessary folder
-		///     desired by the project, tools, and frameworks reliant on it.
+		///     EnsureSetup will find all <see cref="COCNodeGraph"/> instances in the project and if they are included
+		/// in automatic generation will evaluate all of their content.
 		/// </summary>
 		[InitializeOnLoadMethod]
 		public static void EnsureSetup()
@@ -48,10 +45,33 @@ namespace JCMG.COC.Editor
 			}
 
 			// Initialize any root domain folders and paths
-			// TODO Find and execute all eligible graphs
+			try
+			{
+				AssetDatabase.StartAssetEditing();
 
-			// Set the scripting symbol for COC
-			PlayerSettingsTools.AddScriptingSymbolIfNotDefined(SCRIPTING_SYMBOL);
+				var nodeGraphGUIDs = AssetDatabase.FindAssets(COCEditorConstants.FIND_ALL_GRAPHS_FILTER);
+				for (var i = 0; i < nodeGraphGUIDs.Length; i++)
+				{
+					var assetGUID = nodeGraphGUIDs[i];
+					var assetPath = AssetDatabase.GUIDToAssetPath(assetGUID);
+					var nodeGraph = AssetDatabase.LoadAssetAtPath<COCNodeGraph>(assetPath);
+
+					// If this is a node graph and set to automatically generate content, do so.
+					if (nodeGraph != null && nodeGraph.IncludeInAutomaticGeneration)
+					{
+						nodeGraph.GenerateFolderPaths();
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				Debug.LogError(e);
+			}
+			finally
+			{
+				AssetDatabase.StopAssetEditing();
+				AssetDatabase.Refresh();
+			}
 
 			AssetDatabase.Refresh();
 		}

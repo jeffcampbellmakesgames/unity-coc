@@ -32,8 +32,6 @@ namespace JCMG.COC.Editor
 	{
 		public override void OnOpen()
 		{
-			base.OnOpen();
-
 			// Create and add an AssetRootNode if not present.
 			if (target.nodes.TrueForAll(x => x.GetType() != typeof(AssetRootNode)))
 			{
@@ -43,7 +41,13 @@ namespace JCMG.COC.Editor
 
 		public override string GetNodeMenuName(Type type)
 		{
-			return type == typeof(AssetRootNode) ? null : base.GetNodeMenuName(type);
+			// Ensure only COC nodes other than the AssetRootNode can be created.
+			if (type == typeof(AssetRootNode) || type.Namespace != COCEditorConstants.NAMESPACE)
+			{
+				return null;
+			}
+
+			return base.GetNodeMenuName(type);
 		}
 	}
 }

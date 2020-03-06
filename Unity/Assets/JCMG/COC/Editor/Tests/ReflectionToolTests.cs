@@ -24,10 +24,9 @@ SOFTWARE.
 #if UNIT_TESTS_NEWER_THAN_1_1_9
 
 using System.Collections.Generic;
-using JCMG.COC.Editor;
 using NUnit.Framework;
 
-namespace Editor.Tests
+namespace JCMG.COC.Editor.Tests
 {
 	[TestFixture]
 	internal sealed class ReflectionToolTests
@@ -40,7 +39,7 @@ namespace Editor.Tests
 		};
 
 		[Test]
-		public void AssertReflectionUtilityCanDeriveAllNestedSubclasses()
+		public void AssertAllAllNestedSubclassesCanBeDiscovered()
 		{
 			var allReflectionDerivedSubclassesOfA = new List<A>();
 			allReflectionDerivedSubclassesOfA.AddRange(ReflectionTools.GetAllDerivedInstancesOfType<A>());

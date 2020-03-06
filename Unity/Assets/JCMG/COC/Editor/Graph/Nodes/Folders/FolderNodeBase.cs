@@ -27,6 +27,9 @@ using XNode;
 
 namespace JCMG.COC.Editor
 {
+	/// <summary>
+	/// A base abstract class for any node representing a folder.
+	/// </summary>
 	internal abstract class FolderNodeBase : HierarchyNodeBase
 	{
 		#pragma warning disable 0649

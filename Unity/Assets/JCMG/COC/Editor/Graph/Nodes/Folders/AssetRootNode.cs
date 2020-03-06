@@ -23,10 +23,12 @@ SOFTWARE.
 */
 using System.IO;
 using System.Linq;
-using XNode;
 
 namespace JCMG.COC.Editor
 {
+	/// <summary>
+	/// A node representing the Unity Project's Asset folder. Only one of these should be present per graph.
+	/// </summary>
 	internal sealed class AssetRootNode : FolderNodeBase
 	{
 		/// <summary>
@@ -50,7 +52,7 @@ namespace JCMG.COC.Editor
 					var childFolderRef = childFolderArray[j];
 					var newFolderRef = new FolderRef
 					{
-						FolderName = Path.Combine(COCTools.ASSET_ROOT, childFolderRef.FolderName)
+						FolderName = Path.Combine(COCEditorConstants.ASSET_ROOT, childFolderRef.FolderName)
 					};
 					_outputFolders[current++] = newFolderRef;
 				}

@@ -26,6 +26,9 @@ using UnityEngine;
 
 namespace JCMG.COC.Editor
 {
+	/// <summary>
+	/// Represents a reference to a specific folder.
+	/// </summary>
 	[Serializable]
 	internal sealed class FolderRef : IEquatable<FolderRef>
 	{

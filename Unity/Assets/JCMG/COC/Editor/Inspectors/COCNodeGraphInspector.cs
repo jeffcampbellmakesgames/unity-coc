@@ -39,14 +39,45 @@ namespace JCMG.COC.Editor
 
 			var nodeGraph = (COCNodeGraph)target;
 
-			if (GUILayout.Button("Edit graph", GUILayout.Height(40f)))
+			// Settings
+			GUILayout.Label(COCEditorConstants.SETTINGS_TITLE, EditorStyles.boldLabel);
+
+			var autoGenProperty = serializedObject.FindProperty(
+				COCEditorConstants.INCLUDE_AUTOMATIC_GENERATION_PROPERTY_NAME);
+
+			using (var scope = new EditorGUI.ChangeCheckScope())
+			{
+				using (new EditorGUILayout.HorizontalScope())
+				{
+					EditorGUILayout.LabelField(
+						new GUIContent(
+							autoGenProperty.displayName,
+							COCEditorConstants.INCLUDE_AUTOMATIC_GENERATION_TOOLTIP),
+						GUILayout.Width(COCEditorConstants.LABEL_WIDTH));
+					EditorGUILayout.PropertyField(autoGenProperty, GUIContent.none);
+				}
+
+				if (scope.changed)
+				{
+					serializedObject.ApplyModifiedProperties();
+				}
+			}
+
+			// Actions
+			GUILayout.Space(5);
+			GUILayout.Label(COCEditorConstants.ACTIONS_TITLE, EditorStyles.boldLabel);
+
+			if (GUILayout.Button(new GUIContent(
+				COCEditorConstants.EDIT_GRAPH_BUTTON_LABEL,
+				COCEditorConstants.EDIT_GRAPH_BUTTON_TOOLTIP)))
 			{
 				NodeEditorWindow.Open(nodeGraph);
 			}
 
-			GUILayout.Space(EditorGUIUtility.singleLineHeight);
-
-			if (GUILayout.Button("Evaluate", GUILayout.Height(40f)))
+			if (GUILayout.Button(
+				new GUIContent(
+					COCEditorConstants.GENERATE_FOLDERS_BUTTON_LABEL,
+					COCEditorConstants.GENERATE_FOLDERS_BUTTON_TOOLTIP)))
 			{
 				nodeGraph.Evaluate();
 			}

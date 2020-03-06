@@ -29,20 +29,24 @@ namespace JCMG.COC.Editor
 	[CustomNodeEditor(typeof(FolderNode))]
 	internal sealed class FolderNodeEditor : HierarchyNodeBaseEditor
 	{
+		private const string FOLDER_REF_PROP_NAME = "_folderRef";
+		private const string FOLDER_NAME_PROP_NAME = "_folderName";
+
 		public override void OnBodyGUI()
 		{
 			using (var scope = new EditorGUI.ChangeCheckScope())
 			{
 				base.OnBodyGUI();
 
-				var folderProp = serializedObject.FindProperty("_folderRef").FindPropertyRelative("_folderName");
-				var folderName = folderProp.stringValue;
+				var folderProp = serializedObject.FindProperty(FOLDER_REF_PROP_NAME);
+				var folderNameProp = folderProp.FindPropertyRelative(FOLDER_NAME_PROP_NAME);
+				var folderName = folderNameProp.stringValue;
 				if (string.IsNullOrEmpty(folderName))
 				{
-					EditorGUILayout.HelpBox("This folder name is invalid.", MessageType.Warning);
+					EditorGUILayout.HelpBox(COCEditorConstants.INVALID_EMPTY_FOLDER_NAME, MessageType.Warning);
 				}
 
-				EditorGUILayout.PropertyField(folderProp);
+				EditorGUILayout.PropertyField(folderNameProp);
 
 				if (scope.changed)
 				{

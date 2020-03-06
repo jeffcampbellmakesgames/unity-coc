@@ -27,7 +27,10 @@ using XNode;
 
 namespace JCMG.COC.Editor
 {
-	[CreateNodeMenu("JCMG COC/Folder List")]
+	/// <summary>
+	/// A node representing a flat hierarchical list of folders.
+	/// </summary>
+	[CreateNodeMenu("Folder List")]
 	internal sealed class FolderListNode : HierarchyNodeBase
 	{
 		internal FolderRef[] FolderRefs => _folderRefs;
