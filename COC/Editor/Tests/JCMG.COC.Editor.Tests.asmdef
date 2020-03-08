@@ -1,0 +1,24 @@
+{
+    "name": "JCMG.COC.Editor.Tests",
+    "references": [
+        "GUID:bef7654ea7a99574991b91e975bf1848",
+        "GUID:0acc523941302664db1f4e527237feb3"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.test-framework",
+            "expression": "1.1.9",
+            "define": "UNIT_TESTS_NEWER_THAN_1_1_9"
+        }
+    ],
+    "noEngineReferences": false
+}
