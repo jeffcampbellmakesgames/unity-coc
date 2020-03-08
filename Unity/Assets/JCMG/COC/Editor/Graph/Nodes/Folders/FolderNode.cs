@@ -21,10 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
-using XNode;
+using JCMG.xNode;
 
 namespace JCMG.COC.Editor
 {
@@ -32,9 +34,28 @@ namespace JCMG.COC.Editor
 	/// A node representing a single folder with zero or more child folders.
 	/// </summary>
 	[CreateNodeMenu("Folder")]
-	internal sealed class FolderNode : FolderNodeBase
+	internal sealed class FolderNode : HierarchyNodeBase
 	{
+		/// <summary>
+		/// The local <see cref="FolderRef"/> for this node.
+		/// </summary>
+		internal FolderRef FolderRef => _folderRef;
+
+		/// <summary>
+		/// The local child <see cref="FolderRef"/>(s) to this node; this does not include any
+		/// nodes connected to its child folders port.
+		/// </summary>
+		internal FolderRef[] ChildFolderRefs => _childFolders;
+
 		#pragma warning disable 0649
+
+		[Input(typeConstraint = TypeConstraint.Strict)]
+		[SerializeField]
+		private FolderRef[] _childFolders;
+
+		[Output(backingValue = ShowBackingValue.Never)]
+		[SerializeField]
+		private FolderRef[] _outputFolders;
 
 		[HideInInspector]
 		[SerializeField]
@@ -61,7 +82,7 @@ namespace JCMG.COC.Editor
 
 		public override object GetValue(NodePort port)
 		{
-			return _outputFolders;
+			return _outputFolders?.Distinct().ToArray();
 		}
 
 		/// <summary>
@@ -86,9 +107,8 @@ namespace JCMG.COC.Editor
 			}
 			else if(length > 0 && isFolderNameValid)
 			{
-				_outputFolders = new FolderRef[length];
+				TempList.Clear();
 
-				var current = 0;
 				for (var i = 0; i < childFolderArrays.Length; i++)
 				{
 					var childFolderArray = childFolderArrays[i];
@@ -97,12 +117,20 @@ namespace JCMG.COC.Editor
 						var childFolderRef = childFolderArray[j];
 						var newFolderRef = new FolderRef
 						{
-							FolderName = Path.Combine(_folderRef.FolderName, childFolderRef.FolderName)
+							FolderName = Path.Combine(_folderRef.FolderName, childFolderRef.FolderName),
+							ShouldGenerateCodeToGetPath = childFolderRef.ShouldGenerateCodeToGetPath
 						};
 
-						_outputFolders[current++] = newFolderRef;
+						TempList.Add(newFolderRef);
 					}
 				}
+
+				if (_folderRef.ShouldGenerateCodeToGetPath)
+				{
+					TempList.Add(_folderRef);
+				}
+
+				_outputFolders = TempList.ToArray();
 			}
 			else
 			{

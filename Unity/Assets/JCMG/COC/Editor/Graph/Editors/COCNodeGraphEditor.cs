@@ -21,9 +21,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System;
+using JCMG.xNode;
+using UnityEditor;
 using UnityEngine;
-using xNode.Editor;
+using JCMG.xNode.Editor;
 
 namespace JCMG.COC.Editor
 {
@@ -35,8 +38,27 @@ namespace JCMG.COC.Editor
 			// Create and add an AssetRootNode if not present.
 			if (target.nodes.TrueForAll(x => x.GetType() != typeof(AssetRootNode)))
 			{
-				CreateNode(typeof(AssetRootNode), Vector2.zero);
+				var node = target.AddNode(typeof(AssetRootNode));
+				node.position = Vector2.zero;
+				node.name = NodeEditorUtilities.NodeDefaultName(typeof(AssetRootNode));
+
+				AssetDatabase.SaveAssets();
+				AssetDatabase.AddObjectToAsset(node, target);
+				AssetDatabase.SaveAssets();
+				NodeEditorWindow.RepaintAll();
 			}
+		}
+
+		public override void RemoveNode(Node node)
+		{
+			// Prevent deletion of the AssetRootNode as there should always be one per graph.
+			// otherwise delete as normal.
+			if (node is AssetRootNode)
+			{
+				return;
+			}
+
+			base.RemoveNode(node);
 		}
 
 		public override string GetNodeMenuName(Type type)

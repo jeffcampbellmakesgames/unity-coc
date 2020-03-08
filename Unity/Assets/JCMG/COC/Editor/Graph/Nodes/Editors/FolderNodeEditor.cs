@@ -21,8 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using UnityEditor;
-using xNode.Editor;
+using JCMG.xNode.Editor;
+using UnityEngine;
 
 namespace JCMG.COC.Editor
 {
@@ -39,17 +41,12 @@ namespace JCMG.COC.Editor
 				base.OnBodyGUI();
 
 				var folderProp = serializedObject.FindProperty(FOLDER_REF_PROP_NAME);
-				var folderNameProp = folderProp.FindPropertyRelative(FOLDER_NAME_PROP_NAME);
-				var folderName = folderNameProp.stringValue;
-				if (string.IsNullOrEmpty(folderName))
-				{
-					EditorGUILayout.HelpBox(COCEditorConstants.INVALID_EMPTY_FOLDER_NAME, MessageType.Warning);
-				}
-
-				EditorGUILayout.PropertyField(folderNameProp);
+				EditorGUILayout.PropertyField(folderProp);
 
 				if (scope.changed)
 				{
+					serializedObject.ApplyModifiedProperties();
+
 					var node = target as HierarchyNodeBase;
 					if (node != null)
 					{
@@ -57,6 +54,36 @@ namespace JCMG.COC.Editor
 					}
 				}
 			}
+		}
+
+		public override int GetWidth()
+		{
+			var width = base.GetWidth();
+			var baseWidth = 150;
+			var node = (FolderNode)target;
+			var inputPort = node.GetInputPort(COCEditorConstants.INPUT_FOLDERS_PORT_NAME);
+			if (!inputPort.IsConnected)
+			{
+				var displayFolderPaths = node.ChildFolderRefs;
+				for (var i = 0; i < displayFolderPaths.Length; i++)
+				{
+					var newWidth = EditorStyles.textField.CalcSize(new GUIContent(displayFolderPaths[i].FolderName));
+					if (newWidth.x + baseWidth > width)
+					{
+						width = Mathf.CeilToInt(newWidth.x) + baseWidth;
+					}
+				}
+			}
+			else
+			{
+				var newWidth = EditorStyles.textField.CalcSize(new GUIContent(node.FolderRef.FolderName));
+				if (newWidth.x + baseWidth > width)
+				{
+					width = Mathf.CeilToInt(newWidth.x) + baseWidth;
+				}
+			}
+
+			return width;
 		}
 	}
 }

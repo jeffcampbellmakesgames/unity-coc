@@ -23,7 +23,7 @@ SOFTWARE.
 */
 
 using UnityEditor;
-using xNode.Editor;
+using JCMG.xNode.Editor;
 
 namespace JCMG.COC.Editor
 {

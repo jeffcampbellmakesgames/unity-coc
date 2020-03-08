@@ -23,12 +23,12 @@ SOFTWARE.
 */
 using UnityEditor;
 using UnityEngine;
-using xNode.Editor;
+using JCMG.xNode.Editor;
 
 namespace JCMG.COC.Editor
 {
 	[CustomEditor(typeof(COCNodeGraph))]
-	internal sealed class COCNodeGraphInspector : UnityEditor.Editor
+	internal sealed class COCNodeGraphInspector : GlobalGraphEditor
 	{
 		/// <summary>
 		///   <para>Implement this function to make a custom inspector.</para>

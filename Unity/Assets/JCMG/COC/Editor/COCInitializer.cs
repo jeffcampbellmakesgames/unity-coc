@@ -23,6 +23,7 @@ SOFTWARE.
 */
 
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -30,25 +31,32 @@ using UnityEngine;
 
 namespace JCMG.COC.Editor
 {
+	/// <summary>
+	/// Used to initialize the folder layout and code generated from any <see cref="COCNodeGraph"/> instances in the
+	/// project set to be included in automatic code generation.
+	/// </summary>
 	internal static class COCInitializer
 	{
 		/// <summary>
-		///     EnsureSetup will find all <see cref="COCNodeGraph"/> instances in the project and if they are included
+		///     Finds all <see cref="COCNodeGraph"/> instances in the project and if they are included
 		/// in automatic generation will evaluate all of their content.
 		/// </summary>
 		[InitializeOnLoadMethod]
-		public static void EnsureSetup()
+		public static void EvaluateAllCOCNodeGraphs()
 		{
-			if (EditorApplication.isPlayingOrWillChangePlaymode)
+			if (EditorApplication.isPlayingOrWillChangePlaymode || Application.isBatchMode)
 			{
 				return;
 			}
 
-			// Initialize any root domain folders and paths
 			try
 			{
 				AssetDatabase.StartAssetEditing();
 
+				var settings = COCPreferences.ProjectSettings;
+
+				// For each of the asset graphs, generate its folders and any related code.
+				var nodeGraphList = new List<COCNodeGraph>();
 				var nodeGraphGUIDs = AssetDatabase.FindAssets(COCEditorConstants.FIND_ALL_GRAPHS_FILTER);
 				for (var i = 0; i < nodeGraphGUIDs.Length; i++)
 				{
@@ -60,8 +68,11 @@ namespace JCMG.COC.Editor
 					if (nodeGraph != null && nodeGraph.IncludeInAutomaticGeneration)
 					{
 						nodeGraph.GenerateFolderPaths();
+						nodeGraphList.Add(nodeGraph);
 					}
 				}
+
+				CodeGenerationTools.GenerateGraphPartialClass(settings.CodeGenerationOutputPath, nodeGraphList);
 			}
 			catch (Exception e)
 			{

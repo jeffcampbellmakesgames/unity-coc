@@ -21,7 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using XNode;
+
+using System.Collections.Generic;
+using JCMG.xNode;
 
 namespace JCMG.COC.Editor
 {
@@ -30,6 +32,21 @@ namespace JCMG.COC.Editor
 	/// </summary>
 	internal abstract class HierarchyNodeBase : Node
 	{
+		protected static List<FolderRef> TempList
+		{
+			get
+			{
+				if (_tempList == null)
+				{
+					_tempList = new List<FolderRef>();
+				}
+
+				return _tempList;
+			}
+		}
+
+		private static List<FolderRef> _tempList;
+
 		/// <summary>
 		/// Updates the data for this node and triggers updates for any connected output nodes.
 		/// </summary>

@@ -30,16 +30,17 @@ namespace JCMG.COC.Editor
 	internal sealed class FolderRefPropertyDrawer : PropertyDrawer
 	{
 		private const string FOLDER_NAME_PROP_NAME = "_folderName";
+		private const string GEN_CODE_PATH_PROP_NAME = "_shouldGenerateCodeToGetPath";
 
 		/// <summary>
-		///   <para>Override this method to make your own IMGUI based GUI for the property.</para>
+		///   <para>Draws the inspector GUI for this property.</para>
 		/// </summary>
-		/// <param name="position">Rectangle on the screen to use for the property GUI.</param>
+		/// <param name="rect">Rectangle on the screen to use for the property GUI.</param>
 		/// <param name="property">The SerializedProperty to make the custom GUI for.</param>
 		/// <param name="label">The label of this property.</param>
-		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+		public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
 		{
-			EditorGUI.BeginProperty(position, label, property);
+			EditorGUI.BeginProperty(rect, label, property);
 
 			// Don't make child fields be indented
 			var indent = EditorGUI.indentLevel;
@@ -47,12 +48,22 @@ namespace JCMG.COC.Editor
 
 			// Draw property fields
 			var singleLineHeight = EditorGUIUtility.singleLineHeight;
+
+			// Draw Box for Property
+			GUI.Box(
+				new Rect(
+					rect.position,
+					new Vector2(rect.width, GetPropertyHeight(property, label))),
+				GUIContent.none,
+				COCEditorConstants.BOX_STYLE);
+
+			// Folder Name
 			var folderNameProperty = property.FindPropertyRelative(FOLDER_NAME_PROP_NAME);
 			var isFolderNameValid = !string.IsNullOrEmpty(folderNameProperty.stringValue);
 			var folderNameRect = new Rect(
-				position.x,
-				position.y,
-				position.width,
+				rect.x,
+				rect.y,
+				rect.width,
 				singleLineHeight);
 
 			var originalGUIContentColor = GUI.contentColor;
@@ -66,6 +77,24 @@ namespace JCMG.COC.Editor
 			{
 				EditorGUI.PropertyField(folderNameRect, folderNameProperty);
 			}
+
+			// Should Generate Code
+			var genCodeLabelRect = new Rect(folderNameRect);
+			genCodeLabelRect.y += singleLineHeight;
+			genCodeLabelRect.width = 140f;
+
+			var genCodePropRect = new Rect(genCodeLabelRect);
+			genCodePropRect.x += 140f;
+			genCodePropRect.width = rect.width - 140f;
+
+			var genCodeProp = property.FindPropertyRelative(GEN_CODE_PATH_PROP_NAME);
+			EditorGUI.LabelField(
+				genCodeLabelRect,
+				new GUIContent(
+					COCEditorConstants.GENERATE_CODE_LABEL,
+					COCEditorConstants.GENERATE_CODE_TOOLTIP));
+
+			EditorGUI.PropertyField(genCodePropRect, genCodeProp, GUIContent.none);
 
 			// Set indent back to what it was
 			EditorGUI.indentLevel = indent;
@@ -83,7 +112,7 @@ namespace JCMG.COC.Editor
 		/// </returns>
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 		{
-			return EditorGUIUtility.singleLineHeight;
+			return EditorGUIUtility.singleLineHeight * 2;
 		}
 	}
 }

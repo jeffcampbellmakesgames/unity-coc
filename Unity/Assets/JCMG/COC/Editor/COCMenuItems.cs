@@ -33,7 +33,7 @@ namespace JCMG.COC.Editor
 		[MenuItem("Tools/JCMG/COC/Evaluate all COC Node Graphs")]
 		internal static void RunAllCOCNodeGraphs()
 		{
-			COCInitializer.EnsureSetup();
+			COCInitializer.EvaluateAllCOCNodeGraphs();
 		}
 
 		[MenuItem("Tools/JCMG/COC/Evaluate all COC Node Graphs", true)]

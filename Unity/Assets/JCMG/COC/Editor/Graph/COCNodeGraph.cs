@@ -26,7 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using XNode;
+using JCMG.xNode;
 
 namespace JCMG.COC.Editor
 {
@@ -49,9 +49,6 @@ namespace JCMG.COC.Editor
 
 		#pragma warning restore 0649
 
-		// Port Names
-		private const string OUTPUT_FOLDERS_PORT_NAME = "_outputFolders";
-
 		public void Evaluate()
 		{
 			try
@@ -72,6 +69,26 @@ namespace JCMG.COC.Editor
 
 		internal void GenerateFolderPaths()
 		{
+			var projectPath = COCTools.GetAbsolutePathToProject();
+			var folderRefs = GetFolderRefs();
+			for (var j = 0; j < folderRefs.Count; j++)
+			{
+				var outputPathRef = folderRefs[j];
+				var fullPath = Path.Combine(projectPath, outputPathRef.FolderName);
+
+				if (!Directory.Exists(fullPath))
+				{
+					Directory.CreateDirectory(fullPath);
+
+					Debug.LogFormat(COCEditorConstants.FOLDER_CREATED_LOG, fullPath);
+				}
+
+				COCTools.PreserveFullFolderPath(fullPath);
+			}
+		}
+
+		public IReadOnlyList<FolderRef> GetFolderRefs()
+		{
 			// Get all asset root nodes
 			var assetNodeLists = new List<AssetRootNode>();
 			for (var i = 0; i < nodes.Count; i++)
@@ -83,29 +100,13 @@ namespace JCMG.COC.Editor
 				}
 			}
 
+			var folderRefList = new List<FolderRef>();
 			for (var i = 0; i < assetNodeLists.Count; i++)
 			{
-				var assetRootNode = assetNodeLists[i];
-				var outputPort = assetRootNode.GetOutputPort(OUTPUT_FOLDERS_PORT_NAME);
-				var projectPath = COCTools.GetAbsolutePathToProject();
-				var outputPaths = outputPort.GetOutputValue() as FolderRef[];
-				if (outputPaths != null)
-				{
-					for (var j = 0; j < outputPaths.Length; j++)
-					{
-						var outputPathRef = outputPaths[j];
-						var fullPath = Path.Combine(projectPath, outputPathRef.FolderName);
-
-						if (!Directory.Exists(fullPath))
-						{
-							Directory.CreateDirectory(fullPath);
-							COCTools.PreserveFullFolderPath(fullPath);
-
-							Debug.LogFormat(COCEditorConstants.FOLDER_CREATED_LOG, fullPath);
-						}
-					}
-				}
+				folderRefList.AddRange(assetNodeLists[i].FinalFolderPathRefs);
 			}
+
+			return folderRefList;
 		}
 	}
 }

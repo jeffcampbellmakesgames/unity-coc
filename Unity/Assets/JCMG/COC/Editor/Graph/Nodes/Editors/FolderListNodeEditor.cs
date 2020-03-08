@@ -21,9 +21,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using UnityEditor;
 using UnityEngine;
-using xNode.Editor;
+using JCMG.xNode.Editor;
 
 namespace JCMG.COC.Editor
 {
@@ -34,14 +35,18 @@ namespace JCMG.COC.Editor
 		{
 			var node = (FolderListNode)target;
 			var displayFolderPaths = node.FolderRefs;
-			var baseWidth = 150;
 			var width = base.GetWidth();
-			for (var i = 0; i < displayFolderPaths.Length; i++)
+
+			if (displayFolderPaths != null)
 			{
-				var newWidth = EditorStyles.textField.CalcSize(new GUIContent(displayFolderPaths[i].FolderName));
-				if (newWidth.x + baseWidth > width)
+				var baseWidth = 150;
+				for (var i = 0; i < displayFolderPaths.Length; i++)
 				{
-					width = Mathf.CeilToInt(newWidth.x) + baseWidth;
+					var newWidth = EditorStyles.textField.CalcSize(new GUIContent(displayFolderPaths[i].FolderName));
+					if (newWidth.x + baseWidth > width)
+					{
+						width = Mathf.CeilToInt(newWidth.x) + baseWidth;
+					}
 				}
 			}
 

@@ -23,7 +23,7 @@ SOFTWARE.
 */
 using System.Linq;
 using UnityEngine;
-using XNode;
+using JCMG.xNode;
 
 namespace JCMG.COC.Editor
 {
@@ -63,7 +63,7 @@ namespace JCMG.COC.Editor
 
 		public override object GetValue(NodePort port)
 		{
-			return _outputFolders.Distinct().ToArray();
+			return _outputFolders?.Distinct().ToArray();
 		}
 	}
 }

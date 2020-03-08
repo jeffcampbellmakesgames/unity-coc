@@ -23,14 +23,60 @@ SOFTWARE.
 */
 using System.IO;
 using System.Linq;
+using JCMG.xNode;
+using UnityEngine;
 
 namespace JCMG.COC.Editor
 {
 	/// <summary>
 	/// A node representing the Unity Project's Asset folder. Only one of these should be present per graph.
 	/// </summary>
-	internal sealed class AssetRootNode : FolderNodeBase
+	internal sealed class AssetRootNode : HierarchyNodeBase
 	{
+		/// <summary>
+		/// Returns the final folder refs evaluated from the graph.
+		/// </summary>
+		internal FolderRef[] FinalFolderPathRefs
+		{
+			get
+			{
+				Update();
+
+				return _outputFolders;
+			}
+		}
+
+		/// <summary>
+		/// Returns true if the debug output for this graph should be shown, otherwise false.
+		/// </summary>
+		internal bool ShowDebugFolderOutput => _showDebugOutput;
+
+		#pragma warning disable 0649
+
+		[Input(
+			backingValue = ShowBackingValue.Never,
+			typeConstraint = TypeConstraint.Strict)]
+		[SerializeField]
+		private FolderRef[] _childFolders;
+
+		[HideInInspector]
+		[SerializeField]
+		private bool _showDebugOutput;
+
+		[HideInInspector]
+		[SerializeField]
+		private FolderRef[] _outputFolders;
+
+		#pragma warning restore 0649
+
+		public override void OnCreateConnection(NodePort from, NodePort to)
+		{
+			if (to.fieldName == nameof(_childFolders))
+			{
+				Update();
+			}
+		}
+
 		/// <summary>
 		/// Updates the data for this node and triggers updates for any connected output nodes.
 		/// </summary>
@@ -40,10 +86,8 @@ namespace JCMG.COC.Editor
 				.OfType<FolderRef[]>()
 				.ToArray();
 
-			var length = childFolderArrays.Sum(x => x.Length);
-			_outputFolders = new FolderRef[length];
+			TempList.Clear();
 
-			var current = 0;
 			for (var i = 0; i < childFolderArrays.Length; i++)
 			{
 				var childFolderArray = childFolderArrays[i];
@@ -52,11 +96,16 @@ namespace JCMG.COC.Editor
 					var childFolderRef = childFolderArray[j];
 					var newFolderRef = new FolderRef
 					{
-						FolderName = Path.Combine(COCEditorConstants.ASSET_ROOT, childFolderRef.FolderName)
+						FolderName = Path.Combine(COCEditorConstants.ASSET_ROOT, childFolderRef.FolderName),
+						ShouldGenerateCodeToGetPath = childFolderRef.ShouldGenerateCodeToGetPath
 					};
-					_outputFolders[current++] = newFolderRef;
+					TempList.Add(newFolderRef);
 				}
 			}
+
+			TempList.Sort();
+
+			_outputFolders = TempList.ToArray();
 
 			// Make base call to trigger update on all output ports
 			base.Update();
