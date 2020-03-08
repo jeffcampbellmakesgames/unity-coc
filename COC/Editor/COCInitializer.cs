@@ -1,7 +1,7 @@
 ﻿/*
 MIT License
 
-Copyright (c) 2019 Jeff Campbell
+Copyright (c) 2020 Jeff Campbell
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,9 +21,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 using System;
-using System.IO;
-using JCMG.COC.Editor.Utility;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -31,49 +31,58 @@ using UnityEngine;
 
 namespace JCMG.COC.Editor
 {
-	[InitializeOnLoad]
-	public static class COCInitializer
+	/// <summary>
+	/// Used to initialize the folder layout and code generated from any <see cref="COCNodeGraph"/> instances in the
+	/// project set to be included in automatic code generation.
+	/// </summary>
+	internal static class COCInitializer
 	{
-		// ScriptingSymbol
-		private const string SCRIPTING_SYMBOL = "JCMG_COC";
-
-		static COCInitializer()
-		{
-			EnsureSetup();
-		}
-
 		/// <summary>
-		///     EnsureSetup will rerun the AddConvention initialization process to create the necessary folder
-		///     desired by the project, tools, and frameworks reliant on it.
+		///     Finds all <see cref="COCNodeGraph"/> instances in the project and if they are included
+		/// in automatic generation will evaluate all of their content.
 		/// </summary>
-		public static void EnsureSetup()
+		[InitializeOnLoadMethod]
+		public static void EvaluateAllCOCNodeGraphs()
 		{
-			// Initialize any root domain folders and paths
-			if (!Directory.Exists(Path.Combine(COCUtility.GetUnityAssetRoot(), COCUtility.GAME_ASSET_ROOT)))
-				COCUtility.CreateGameRoot();
-
-			var allCOCDomains = (COCDomain[]) Enum.GetValues(typeof(COCDomain));
-			foreach (var cocDomain in allCOCDomains)
+			if (EditorApplication.isPlayingOrWillChangePlaymode || Application.isBatchMode)
 			{
-				var relativeFolderPath = COCUtility.GetGamePath(cocDomain);
-				var absoluteFolderPath = Path.Combine(COCUtility.GetUnityAssetRoot(), relativeFolderPath);
-				if (!Directory.Exists(absoluteFolderPath))
-				{
-					Directory.CreateDirectory(absoluteFolderPath);
-
-					Debug.LogFormat("[COC] Folder created at \"{0}\"", absoluteFolderPath);
-				}
-
-				COCUtility.PreserveFolder(COCUtility.GetGamePath(cocDomain));
+				return;
 			}
 
-			// Set the scripting symbol for COC
-			PlayerSettingsUtility.AddScriptingSymbolIfNotDefined(SCRIPTING_SYMBOL);
+			try
+			{
+				AssetDatabase.StartAssetEditing();
 
-			// Search through the project for all derived classes of COCProviderBase
-			// and add their conventions to the project
-			var cocProviders = ReflectionUtility.GetAllDerivedInstancesOfType<COCProviderBase>();
-			foreach (var cocProvider in cocProviders) cocProvider.AddConventions();
+				var settings = COCPreferences.ProjectSettings;
+
+				// For each of the asset graphs, generate its folders and any related code.
+				var nodeGraphList = new List<COCNodeGraph>();
+				var nodeGraphGUIDs = AssetDatabase.FindAssets(COCEditorConstants.FIND_ALL_GRAPHS_FILTER);
+				for (var i = 0; i < nodeGraphGUIDs.Length; i++)
+				{
+					var assetGUID = nodeGraphGUIDs[i];
+					var assetPath = AssetDatabase.GUIDToAssetPath(assetGUID);
+					var nodeGraph = AssetDatabase.LoadAssetAtPath<COCNodeGraph>(assetPath);
+
+					// If this is a node graph and set to automatically generate content, do so.
+					if (nodeGraph != null && nodeGraph.IncludeInAutomaticGeneration)
+					{
+						nodeGraph.GenerateFolderPaths();
+						nodeGraphList.Add(nodeGraph);
+					}
+				}
+
+				CodeGenerationTools.GenerateGraphPartialClass(settings.CodeGenerationOutputPath, nodeGraphList);
+			}
+			catch (Exception e)
+			{
+				Debug.LogError(e);
+			}
+			finally
+			{
+				AssetDatabase.StopAssetEditing();
+				AssetDatabase.Refresh();
+			}
 
 			AssetDatabase.Refresh();
 		}
