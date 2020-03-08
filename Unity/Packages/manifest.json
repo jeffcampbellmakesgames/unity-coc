@@ -1,9 +1,10 @@
 {
   "dependencies": {
+    "com.jeffcampbellmakesgames.nodey": "https://github.com/jeffcampbellmakesgames/nodey.git#release/stable",
     "com.jeffcampbellmakesgames.packagetools": "https://github.com/jeffcampbellmakesgames/unity-package-tools.git#release/stable",
     "com.unity.ide.rider": "1.1.4",
     "com.unity.ide.vscode": "1.1.4",
-    "com.unity.test-framework": "1.1.9",
+    "com.unity.test-framework": "1.1.11",
     "com.unity.ugui": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
@@ -40,7 +41,11 @@
   "lock": {
     "com.jeffcampbellmakesgames.packagetools": {
       "revision": "release/stable",
-      "hash": "2c2578f315df7c37dfd9158389f2b40424b63873"
+      "hash": "feaded99c976be564b7e52d2a47fed249e94bddd"
+    },
+    "com.jeffcampbellmakesgames.nodey": {
+      "revision": "release/stable",
+      "hash": "cd422a3b3cb7bb5094abd5221b2b52daa6fc6831"
     }
   }
 }

@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packageSourcePaths:
   - Assets/JCMG
+  packageIgnorePaths: []
   packageDestinationPath: ../../unity-coc_release
+  legacyPackageDestinationPath: 
   packageName: com.jeffcampbellmakesgames.coc
   displayName: JCMG COC
-  packageVersion: 1.0.1
+  packageVersion: 2.0.0
   unityVersion: 2018.1
   description: JCMG CoC is a convention over configuration library for Unity that
     helps to set a common folder convention in a Unity project. It also helps enable
@@ -25,6 +27,9 @@ MonoBehaviour:
     into for resource reading/writing/sharing.
   category: Tools
   keywords:
-  - convention over configuration, convention, coc
+  - Editor
+  - JCMG
+  - COC
+  - Graph
   dependencies: []
   _id: 2e2a66b3-cfa1-4489-9858-6fdb3e65e2e6
