@@ -1,0 +1,516 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9128733534352454796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773cb5c6bbcd7a749a234ba3d26a39be, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    - _outputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: -9128733534352454796}
+      _typeConstraint: 2
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _outputFolders
+        node: {fileID: -2267124740051934597}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _outputFolders
+      _node: {fileID: -9128733534352454796}
+      _typeConstraint: 0
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: -4561176678957923551}
+        reroutePoints: []
+  position: {x: -8, y: -8}
+  _childFolders: []
+  _outputFolders:
+  - _folderName: ExampleContent\Games\Game Two\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: ExampleContent\Games\Game Two\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: ExampleContent\Games\Game Two\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: ExampleContent\Games\Game Two\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: ExampleContent\Games\Game Two\Data
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: ExampleContent\Games\Shared\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: ExampleContent\Games\Shared\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: ExampleContent\Games\Shared\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: ExampleContent\Games\Shared\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: ExampleContent\Games\Shared\Data
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: ExampleContent\Games\Game One\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: ExampleContent\Games\Game One\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: ExampleContent\Games\Game One\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: ExampleContent\Games\Game One\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  _folderRef:
+    _folderName: ExampleContent
+    _shouldGenerateCodeToGetPath: 0
+--- !u!114 &-4561176678957923551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd9b8478be756345b63743ab2ebdae6, type: 3}
+  m_Name: Asset Root
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: -4561176678957923551}
+      _typeConstraint: 2
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _outputFolders
+        node: {fileID: -9128733534352454796}
+        reroutePoints: []
+  position: {x: 312, y: -8}
+  _childFolders: []
+  _showDebugOutput: 1
+  _outputFolders:
+  - _folderName: Assets\ExampleContent\Games\Game One\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Assets\ExampleContent\Games\Game One\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Assets\ExampleContent\Games\Game One\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Assets\ExampleContent\Games\Game One\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Assets\ExampleContent\Games\Game Two\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Assets\ExampleContent\Games\Game Two\Data
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Assets\ExampleContent\Games\Game Two\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Assets\ExampleContent\Games\Game Two\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Assets\ExampleContent\Games\Game Two\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Assets\ExampleContent\Games\Shared\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Assets\ExampleContent\Games\Shared\Data
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Assets\ExampleContent\Games\Shared\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Assets\ExampleContent\Games\Shared\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Assets\ExampleContent\Games\Shared\Scripts
+    _shouldGenerateCodeToGetPath: 1
+--- !u!114 &-2267124740051934597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773cb5c6bbcd7a749a234ba3d26a39be, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    - _outputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: -2267124740051934597}
+      _typeConstraint: 2
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _outputFolders
+        node: {fileID: 7149758672507936821}
+        reroutePoints: []
+      - fieldName: _outputFolders
+        node: {fileID: 7961772350584474291}
+        reroutePoints: []
+      - fieldName: _outputFolders
+        node: {fileID: -1137176641511776974}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _outputFolders
+      _node: {fileID: -2267124740051934597}
+      _typeConstraint: 0
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: -9128733534352454796}
+        reroutePoints: []
+  position: {x: -264, y: -8}
+  _childFolders: []
+  _outputFolders:
+  - _folderName: Games\Game Two\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Games\Game Two\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Games\Game Two\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Games\Game Two\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Games\Game Two\Data
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Games\Shared\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Games\Shared\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Games\Shared\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Games\Shared\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Games\Shared\Data
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Games\Game One\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Games\Game One\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Games\Game One\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Games\Game One\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  _folderRef:
+    _folderName: Games
+    _shouldGenerateCodeToGetPath: 0
+--- !u!114 &-1137176641511776974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773cb5c6bbcd7a749a234ba3d26a39be, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    - _outputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: -1137176641511776974}
+      _typeConstraint: 2
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _folderRefs
+        node: {fileID: 1016751042330036432}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _outputFolders
+      _node: {fileID: -1137176641511776974}
+      _typeConstraint: 0
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: -2267124740051934597}
+        reroutePoints: []
+  position: {x: -600, y: -168}
+  _childFolders: []
+  _outputFolders:
+  - _folderName: Game One\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Game One\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Game One\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Game One\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  _folderRef:
+    _folderName: Game One
+    _shouldGenerateCodeToGetPath: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0d2a7a7118b844ba8f56cda611a9ff, type: 3}
+  m_Name: MultipleGamesCOCNodeGraph
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -4561176678957923551}
+  - {fileID: 1016751042330036432}
+  - {fileID: -2267124740051934597}
+  - {fileID: -1137176641511776974}
+  - {fileID: 7149758672507936821}
+  - {fileID: 2073511487650812934}
+  - {fileID: 7961772350584474291}
+  - {fileID: -9128733534352454796}
+  _includeInAutomaticGeneration: 1
+--- !u!114 &1016751042330036432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00989f50566143d4cad4ecaee1c48ea2, type: 3}
+  m_Name: Folder List
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _folderRefs
+    values:
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _folderRefs
+      _node: {fileID: 1016751042330036432}
+      _typeConstraint: 0
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: -1137176641511776974}
+        reroutePoints: []
+      - fieldName: _childFolders
+        node: {fileID: 7149758672507936821}
+        reroutePoints: []
+      - fieldName: _childFolders
+        node: {fileID: 7961772350584474291}
+        reroutePoints: []
+  position: {x: -952, y: -104}
+  _folderRefs:
+  - _folderName: Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Scripts
+    _shouldGenerateCodeToGetPath: 1
+--- !u!114 &2073511487650812934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773cb5c6bbcd7a749a234ba3d26a39be, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    - _outputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: 2073511487650812934}
+      _typeConstraint: 2
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _outputFolders
+      _node: {fileID: 2073511487650812934}
+      _typeConstraint: 0
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: 7149758672507936821}
+        reroutePoints: []
+      - fieldName: _childFolders
+        node: {fileID: 7961772350584474291}
+        reroutePoints: []
+  position: {x: -952, y: 168}
+  _childFolders: []
+  _outputFolders:
+  - _folderName: Data
+    _shouldGenerateCodeToGetPath: 1
+  _folderRef:
+    _folderName: Data
+    _shouldGenerateCodeToGetPath: 1
+--- !u!114 &7149758672507936821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773cb5c6bbcd7a749a234ba3d26a39be, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    - _outputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: 7149758672507936821}
+      _typeConstraint: 2
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _folderRefs
+        node: {fileID: 1016751042330036432}
+        reroutePoints: []
+      - fieldName: _outputFolders
+        node: {fileID: 2073511487650812934}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _outputFolders
+      _node: {fileID: 7149758672507936821}
+      _typeConstraint: 0
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: -2267124740051934597}
+        reroutePoints: []
+  position: {x: -600, y: 8}
+  _childFolders: []
+  _outputFolders:
+  - _folderName: Game Two\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Game Two\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Game Two\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Game Two\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Game Two\Data
+    _shouldGenerateCodeToGetPath: 1
+  _folderRef:
+    _folderName: Game Two
+    _shouldGenerateCodeToGetPath: 0
+--- !u!114 &7961772350584474291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773cb5c6bbcd7a749a234ba3d26a39be, type: 3}
+  m_Name: Folder
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  ports:
+    keys:
+    - _childFolders
+    - _outputFolders
+    values:
+    - _connectionType: 0
+      _direction: 0
+      _dynamic: 0
+      _fieldName: _childFolders
+      _node: {fileID: 7961772350584474291}
+      _typeConstraint: 2
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _folderRefs
+        node: {fileID: 1016751042330036432}
+        reroutePoints: []
+      - fieldName: _outputFolders
+        node: {fileID: 2073511487650812934}
+        reroutePoints: []
+    - _connectionType: 0
+      _direction: 1
+      _dynamic: 0
+      _fieldName: _outputFolders
+      _node: {fileID: 7961772350584474291}
+      _typeConstraint: 0
+      _typeQualifiedName: JCMG.COC.Editor.FolderRef[], JCMG.COC.Editor, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _childFolders
+        node: {fileID: -2267124740051934597}
+        reroutePoints: []
+  position: {x: -584, y: 168}
+  _childFolders: []
+  _outputFolders:
+  - _folderName: Shared\Art
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Shared\Prefabs
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Shared\Materials
+    _shouldGenerateCodeToGetPath: 0
+  - _folderName: Shared\Scripts
+    _shouldGenerateCodeToGetPath: 1
+  - _folderName: Shared\Data
+    _shouldGenerateCodeToGetPath: 1
+  _folderRef:
+    _folderName: Shared
+    _shouldGenerateCodeToGetPath: 0
