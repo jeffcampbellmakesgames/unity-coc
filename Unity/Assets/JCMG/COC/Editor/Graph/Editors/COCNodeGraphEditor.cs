@@ -23,10 +23,10 @@ SOFTWARE.
 */
 
 using System;
-using JCMG.xNode;
+using JCMG.Nodey;
 using UnityEditor;
 using UnityEngine;
-using JCMG.xNode.Editor;
+using JCMG.Nodey.Editor;
 
 namespace JCMG.COC.Editor
 {

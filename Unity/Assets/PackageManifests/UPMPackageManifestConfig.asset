@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29f67b488b4458983fd973bbda8c8fa, type: 3}
-  m_Name: PackageManifestConfig
+  m_Name: UPMPackageManifestConfig
   m_EditorClassIdentifier: 
   packageSourcePaths:
   - Assets/JCMG
@@ -31,5 +31,7 @@ MonoBehaviour:
   - JCMG
   - COC
   - Graph
-  dependencies: []
-  _id: 2e2a66b3-cfa1-4489-9858-6fdb3e65e2e6
+  dependencies:
+  - packageName: com.jeffcampbellmakesgames.xnode
+    packageVersion: 1.1.0
+  _id: f544f1a0-24a8-404c-984d-f192b6fa6f00
