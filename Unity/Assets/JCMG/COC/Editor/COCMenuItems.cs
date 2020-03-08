@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using UnityEditor;
+using UnityEngine;
 
 namespace JCMG.COC.Editor
 {
@@ -30,7 +31,7 @@ namespace JCMG.COC.Editor
 	/// </summary>
 	internal static class COCMenuItems
 	{
-		[MenuItem("Tools/JCMG/COC/Evaluate all COC Node Graphs")]
+		[MenuItem("Tools/JCMG/COC/Evaluate all COC Node Graphs", priority = 100)]
 		internal static void RunAllCOCNodeGraphs()
 		{
 			COCInitializer.EvaluateAllCOCNodeGraphs();
@@ -40,6 +41,28 @@ namespace JCMG.COC.Editor
 		internal static bool ValidateRunAllCOCNodeGraphs()
 		{
 			return AssetDatabase.FindAssets(COCEditorConstants.FIND_ALL_GRAPHS_FILTER).Length > 0;
+		}
+
+		[MenuItem("Tools/JCMG/COC/Submit bug or feature request")]
+		internal static void OpenURLToGitHubIssuesSection()
+		{
+			const string GITHUB_ISSUES_URL = "https://github.com/jeffcampbellmakesgames/unity-coc";
+
+			Application.OpenURL(GITHUB_ISSUES_URL);
+		}
+
+		[MenuItem("Tools/JCMG/COC/Donate to support development")]
+		internal static void OpenURLToKoFi()
+		{
+			const string KOFI_URL = "https://ko-fi.com/stampyturtle";
+
+			Application.OpenURL(KOFI_URL);
+		}
+
+		[MenuItem("Tools/JCMG/COC/About")]
+		internal static void OpenAboutModalDialog()
+		{
+			COCAboutWindow.View();
 		}
 	}
 }
