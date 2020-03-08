@@ -23,7 +23,7 @@ SOFTWARE.
 */
 
 using System.Collections.Generic;
-using JCMG.xNode;
+using JCMG.Nodey;
 
 namespace JCMG.COC.Editor
 {
