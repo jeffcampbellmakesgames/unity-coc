@@ -19,7 +19,7 @@ MonoBehaviour:
   legacyPackageDestinationPath: 
   packageName: com.jeffcampbellmakesgames.coc
   displayName: JCMG COC
-  packageVersion: 2.1.0
+  packageVersion: 2.1.1
   unityVersion: 2018.1
   description: JCMG CoC is a convention over configuration library for Unity that
     helps to set a common folder convention in a Unity project. It also helps enable
