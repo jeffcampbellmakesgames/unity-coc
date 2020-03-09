@@ -1,3 +1,5 @@
+[![openupm](https://img.shields.io/npm/v/com.jeffcampbellmakesgames.coc?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.jeffcampbellmakesgames.coc/)
+
 # JCMG CoC
 
 JCMG CoC is a convention-over-configuration library for Unity that enabled defining your Unity projects folder structure and optionally generate code to be able to easily retrieve specific folder paths. Practically speaking, it helps to quickly enable tools and other frameworks to have a set of well-known locations to integrate into for resource reading/writing/sharing.
