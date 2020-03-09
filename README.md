@@ -1,4 +1,6 @@
-[![openupm](https://img.shields.io/npm/v/com.jeffcampbellmakesgames.coc?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.jeffcampbellmakesgames.coc/)
+<a href="https://openupm.com/packages/com.jeffcampbellmakesgames.coc/"><img src="https://img.shields.io/npm/v/com.jeffcampbellmakesgames.coc?label=openupm&amp;registry_uri=https://package.openupm.com" /></a>
+<img alt="GitHub issues" src="https://img.shields.io/github/issues/jeffcampbellmakesgames/unity-coc">
+<img alt="GitHub" src="https://img.shields.io/github/license/jeffcampbellmakesgames/unity-coc">
 
 # JCMG CoC
 
