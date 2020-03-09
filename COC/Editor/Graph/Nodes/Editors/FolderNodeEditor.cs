@@ -65,12 +65,15 @@ namespace JCMG.COC.Editor
 			if (!inputPort.IsConnected)
 			{
 				var displayFolderPaths = node.ChildFolderRefs;
-				for (var i = 0; i < displayFolderPaths.Length; i++)
+				if (displayFolderPaths != null)
 				{
-					var newWidth = EditorStyles.textField.CalcSize(new GUIContent(displayFolderPaths[i].FolderName));
-					if (newWidth.x + baseWidth > width)
+					for (var i = 0; i < displayFolderPaths.Length; i++)
 					{
-						width = Mathf.CeilToInt(newWidth.x) + baseWidth;
+						var newWidth = EditorStyles.textField.CalcSize(new GUIContent(displayFolderPaths[i].FolderName));
+						if (newWidth.x + baseWidth > width)
+						{
+							width = Mathf.CeilToInt(newWidth.x) + baseWidth;
+						}
 					}
 				}
 			}
