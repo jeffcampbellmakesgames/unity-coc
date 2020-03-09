@@ -46,7 +46,7 @@ namespace JCMG.COC.Editor
 		[MenuItem("Tools/JCMG/COC/Submit bug or feature request")]
 		internal static void OpenURLToGitHubIssuesSection()
 		{
-			const string GITHUB_ISSUES_URL = "https://github.com/jeffcampbellmakesgames/unity-coc";
+			const string GITHUB_ISSUES_URL = "https://github.com/jeffcampbellmakesgames/unity-coc/issues";
 
 			Application.OpenURL(GITHUB_ISSUES_URL);
 		}
