@@ -25,7 +25,7 @@ Using the native Unity Package Manager introduced in 2017.2, you can add this li
 	"dependencies": {
 		...
 		"com.jeffcampbellmakesgames.coc" : "https://github.com/jeffcampbellmakesgames/unity-coc.git#release/stable",
-		"com.jeffcampbellmakesgames.xnode": "https://github.com/jeffcampbellmakesgames/xnode.git#release/stable",
+		"com.jeffcampbellmakesgames.nodey": "https://github.com/jeffcampbellmakesgames/nodey.git#release/stable",
 		...
 	}
 }
