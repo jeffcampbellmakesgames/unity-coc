@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "com.jeffcampbellmakesgames.nodey": "https://github.com/jeffcampbellmakesgames/nodey.git#release/stable",
-    "com.jeffcampbellmakesgames.packagetools": "https://github.com/jeffcampbellmakesgames/unity-package-tools.git#release/stable",
+    "com.jeffcampbellmakesgames.nodey": "1.2.2",
+    "com.jeffcampbellmakesgames.packagetools": "1.2.1",
     "com.unity.ide.rider": "1.1.4",
     "com.unity.ide.vscode": "1.1.4",
     "com.unity.test-framework": "1.1.11",
@@ -38,14 +38,15 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
   },
-  "lock": {
-    "com.jeffcampbellmakesgames.packagetools": {
-      "revision": "release/stable",
-      "hash": "feaded99c976be564b7e52d2a47fed249e94bddd"
-    },
-    "com.jeffcampbellmakesgames.nodey": {
-      "revision": "release/stable",
-      "hash": "cd422a3b3cb7bb5094abd5221b2b52daa6fc6831"
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.jeffcampbellmakesgames.nodey",
+        "com.jeffcampbellmakesgames.packagetools",
+        "com.openupm"
+      ]
     }
-  }
+  ]
 }
